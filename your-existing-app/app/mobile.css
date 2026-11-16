@@ -1,0 +1,592 @@
+/* Small-screen refinements for the editorial layout. */
+@media (max-width: 700px) {
+  body {
+    font-size: 15px;
+    overflow-x: clip;
+  }
+
+  .site-header {
+    height: 74px;
+    padding: 10px 5vw 0;
+  }
+
+  .site-header .wordmark:before {
+    left: 5vw;
+    top: 4px;
+  }
+
+  .site-header .wordmark:after {
+    display: none;
+  }
+
+  .wordmark span {
+    font-size: clamp(27px, 8vw, 31px);
+  }
+
+  .wordmark b {
+    font-size: 7px;
+    letter-spacing: .18em;
+  }
+
+  .mobile-menu {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+  }
+
+  .nav-links {
+    top: 74px;
+    max-height: calc(100dvh - 74px);
+    overflow-y: auto;
+    padding: 10px 6vw calc(18px + env(safe-area-inset-bottom));
+    box-shadow: 0 14px 22px rgba(16, 16, 68, .08);
+  }
+
+  .nav-links.open {
+    top: 74px;
+  }
+
+  .nav-links a {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 16px;
+  }
+
+  .nav-links .search-toggle {
+    min-width: 48px;
+    min-height: 48px;
+  }
+
+  .search-panel {
+    top: 74px;
+    padding: 8px 5vw;
+  }
+
+  .search-panel input {
+    min-width: 0;
+    width: auto;
+    font-size: 16px;
+  }
+
+  .search-panel button {
+    width: 44px;
+    height: 44px;
+  }
+
+  .home-hero {
+    padding: 30px 0 54px;
+    gap: 22px;
+  }
+
+  .hero-copy {
+    padding: 0 6vw;
+  }
+
+  .issue-rule {
+    gap: 9px;
+    margin-bottom: 22px;
+    font-size: 10px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(43px, 12.8vw, 60px);
+    line-height: .9;
+    margin: 18px 0;
+  }
+
+  .hero-copy > p {
+    max-width: 32ch;
+    font-size: 17px;
+    line-height: 1.45;
+  }
+
+  .hero-byline {
+    font-size: 10px;
+  }
+
+  .button {
+    min-height: 46px;
+    gap: 14px;
+    padding: 12px 16px;
+    font-size: 11px;
+  }
+
+  .hero-visual {
+    height: clamp(260px, 86vw, 360px);
+    margin: 0 5vw 0 8vw;
+  }
+
+  .hero-visual:before {
+    inset: 12px;
+  }
+
+  .hero-caption {
+    left: 16px;
+    bottom: 16px;
+    max-width: 75%;
+    font-size: 12px;
+  }
+
+  .hero-index {
+    left: 6vw;
+    bottom: 17px;
+    font-size: 8px;
+  }
+
+  .section,
+  .postcard-section {
+    padding: 60px 6vw;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 27px;
+  }
+
+  .section-heading h2,
+  .lens-title h2,
+  .recommend-intro h2 {
+    font-size: clamp(36px, 10vw, 46px);
+    line-height: .98;
+  }
+
+  .section-heading > .text-link {
+    margin-top: 0;
+    white-space: normal;
+    font-size: 11px;
+  }
+
+  .stories-grid {
+    gap: 32px;
+  }
+
+  .story-card-large .story-image,
+  .story-image,
+  .listing-grid .story-image {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .story-card-large h3,
+  .story-card h3 {
+    font-size: clamp(27px, 8vw, 34px);
+    line-height: 1.05;
+  }
+
+  .story-card > p {
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  .story-meta {
+    gap: 10px;
+    font-size: 9px;
+  }
+
+  .lens-section {
+    padding: 56px 6vw;
+    grid-template-rows: auto minmax(190px, 62vw);
+    gap: 12px;
+  }
+
+  .lens-title h2 {
+    font-size: clamp(40px, 11vw, 50px);
+  }
+
+  .lens-title p {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .lens-main {
+    height: auto;
+  }
+
+  .lens-small {
+    height: clamp(130px, 40vw, 165px);
+  }
+
+  .lens-photo span {
+    left: 12px;
+    bottom: 12px;
+    font-size: 17px;
+  }
+
+  .postcard-preview {
+    gap: 28px;
+  }
+
+  .postcard-image {
+    height: auto;
+    aspect-ratio: 4 / 3;
+    margin-bottom: 14px;
+  }
+
+  .postcard-card h3 {
+    font-size: 28px;
+  }
+
+  .postcard-card p,
+  .recommend-intro p,
+  .recommend-item p {
+    font-size: 16px;
+  }
+
+  .recommendations {
+    gap: 6px;
+    padding-top: 8px;
+  }
+
+  .recommend-item {
+    min-height: 0;
+    padding: 17px 38px 19px 0;
+  }
+
+  .recommend-item h3 {
+    font-size: 27px;
+  }
+
+  .community-band {
+    padding: 38px 6vw;
+  }
+
+  .community-band h2 {
+    font-size: clamp(34px, 9vw, 40px);
+  }
+
+  .community-band p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .newsletter {
+    padding: 62px 6vw;
+  }
+
+  .newsletter h2 {
+    font-size: clamp(37px, 10vw, 46px);
+  }
+
+  .newsletter > p {
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  .newsletter form {
+    gap: 8px;
+  }
+
+  .newsletter input {
+    font-size: 16px;
+  }
+
+  .footer {
+    padding: 40px 6vw calc(20px + env(safe-area-inset-bottom));
+  }
+
+  .footer-top {
+    gap: 28px;
+    padding-bottom: 30px;
+  }
+
+  .footer-nav {
+    gap: 20px;
+  }
+
+  .footer-nav div {
+    min-width: 0;
+    gap: 12px;
+  }
+
+  .footer-nav a {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .footer-bottom {
+    font-size: 10px;
+    line-height: 1.5;
+  }
+
+  .listing-page,
+  .photography-page,
+  .postcards-page,
+  .about-page {
+    padding: 48px 6vw 68px;
+  }
+
+  .page-intro {
+    margin-bottom: 32px;
+  }
+
+  .page-intro h1 {
+    font-size: clamp(44px, 13vw, 61px);
+    line-height: .94;
+  }
+
+  .page-intro > p {
+    font-size: 18px;
+    line-height: 1.45;
+  }
+
+  .listing-search {
+    max-width: none;
+    gap: 8px;
+  }
+
+  .listing-search input {
+    min-width: 0;
+    font-size: 16px;
+  }
+
+  .listing-search button {
+    min-height: 44px;
+    padding: 8px 4px;
+  }
+
+  .listing-grid {
+    gap: 30px;
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-block {
+    min-height: 0;
+    padding: 20px 18px;
+  }
+
+  .category-block h2 {
+    font-size: 27px;
+  }
+
+  .category-block p {
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .article-page {
+    padding: 18px 0 68px;
+  }
+
+  .article-top {
+    padding: 0 6vw;
+    gap: 12px;
+  }
+
+  .back-link {
+    min-height: 44px;
+    font-size: 12px;
+  }
+
+  .article-header {
+    padding: 38px 6vw 28px;
+  }
+
+  .article-header h1 {
+    font-size: clamp(39px, 11.5vw, 56px);
+    line-height: .96;
+    overflow-wrap: anywhere;
+  }
+
+  .article-subtitle {
+    font-size: 19px;
+    line-height: 1.4;
+  }
+
+  .article-cover {
+    height: auto;
+    aspect-ratio: 4 / 3;
+    margin: 0 0 52px;
+  }
+
+  .article-cover figcaption {
+    bottom: -30px;
+    line-height: 1.4;
+  }
+
+  .article-body {
+    max-width: 42rem;
+    padding: 0 7vw;
+    font-size: clamp(18px, 4.8vw, 20px);
+    line-height: 1.65;
+    hyphens: auto;
+  }
+
+  .article-body p {
+    margin-bottom: 23px;
+  }
+
+  .article-body blockquote {
+    font-size: clamp(25px, 7vw, 30px);
+  }
+
+  .article-endnote {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .article-share {
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .related-section {
+    padding: 54px 6vw 0;
+  }
+
+  .postcard-gallery {
+    gap: 32px;
+  }
+
+  .postcard-large-image,
+  .postcard-large-1 .postcard-large-image {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .postcard-info h2 {
+    font-size: 29px;
+  }
+
+  .postcard-info p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .postcard-story-cover {
+    height: 76svh;
+    min-height: 300px;
+    max-height: 560px;
+  }
+
+  .postcard-story-header h1 {
+    font-size: clamp(40px, 11.5vw, 56px);
+    line-height: .98;
+  }
+
+  .postcard-story-header > p,
+  .postcard-story-body {
+    font-size: 18px;
+    line-height: 1.55;
+  }
+
+  .share-row {
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .next-postcard {
+    gap: 12px;
+  }
+
+  .next-postcard > a {
+    font-size: 18px;
+  }
+
+  .photo-grid {
+    grid-auto-rows: clamp(130px, 42vw, 175px);
+  }
+
+  .lightbox {
+    padding: max(56px, env(safe-area-inset-top)) 10px max(20px, env(safe-area-inset-bottom));
+  }
+
+  .lightbox-close,
+  .lightbox-prev,
+  .lightbox-next {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+  }
+
+  .about-hero {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .about-columns > div:last-child,
+  .about-team p {
+    font-size: 17px;
+    line-height: 1.55;
+  }
+
+  .about-team > img {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .departments > div > a {
+    min-height: 54px;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .site-header {
+    padding-left: 4vw;
+    padding-right: 4vw;
+  }
+
+  .wordmark b {
+    letter-spacing: .12em;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(40px, 12.5vw, 48px);
+  }
+
+  .issue-rule {
+    font-size: 9px;
+  }
+
+  .section,
+  .postcard-section,
+  .listing-page,
+  .photography-page,
+  .postcards-page,
+  .about-page {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  .section-heading h2,
+  .lens-title h2,
+  .recommend-intro h2 {
+    font-size: 36px;
+  }
+
+  .footer-nav {
+    gap: 12px;
+  }
+
+  .footer-nav a {
+    font-size: 11px;
+  }
+
+  .article-header h1 {
+    font-size: clamp(36px, 10.5vw, 43px);
+  }
+
+  .article-top .eyebrow {
+    font-size: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-visual img,
+  .story-image img,
+  .lens-photo img,
+  .postcard-image img,
+  .postcard-large-image img {
+    transition: none;
+  }
+}
