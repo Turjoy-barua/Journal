@@ -1,0 +1,2 @@
+import article from './article';import category from './category';import author from './author';import postcard from './postcard';import photoGallery from './photoGallery';import bookRecommendation from './bookRecommendation';import songRecommendation from './songRecommendation';import event from './event';import podcastEpisode from './podcastEpisode';
+export const schemaTypes=[article,category,author,postcard,photoGallery,bookRecommendation,songRecommendation,event,podcastEpisode];

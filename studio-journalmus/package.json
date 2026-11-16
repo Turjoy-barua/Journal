@@ -1,0 +1,20 @@
+{
+  "name": "studio-journalmus",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "CHOKIDAR_USEPOLLING=1 sanity dev --host 127.0.0.1",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "typegen": "sanity schemas extract --enforce-required-fields --path schema.json && sanity typegen generate"
+  },
+  "dependencies": {
+    "@sanity/vision": "^5.31.2",
+    "sanity": "^5.31.2",
+    "styled-components": "^6.1.15"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.2"
+  }
+}

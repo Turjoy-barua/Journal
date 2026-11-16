@@ -1,0 +1,13 @@
+{
+  "name": "journalmus-platform",
+  "private": true,
+  "scripts": {
+    "dev:web": "npm --prefix your-existing-app run dev",
+    "build:web": "npm --prefix your-existing-app run build",
+    "start:web": "npm --prefix your-existing-app run start",
+    "dev:studio": "npm --prefix studio-journalmus run dev",
+    "build:studio": "npm --prefix studio-journalmus run build",
+    "deploy:studio": "npm --prefix studio-journalmus run deploy",
+    "typegen": "npm --prefix studio-journalmus run typegen"
+  }
+}

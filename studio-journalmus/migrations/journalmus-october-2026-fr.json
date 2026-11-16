@@ -1,0 +1,116 @@
+{
+  "source": {
+    "url": "https://www.calameo.com/read/0082954679173b0f87c04",
+    "title": "Journalmus oct 2026 Fr",
+    "issue": "N02 · October 2026",
+    "publisher": "Parismus",
+    "publishedAt": "2026-10-07T00:00:00.000Z",
+    "pages": 9
+  },
+  "categories": [
+    { "key": "tendances", "title": "Tendances de saison", "slug": "tendances-de-saison" },
+    { "key": "paris", "title": "Spot in Paris", "slug": "spot-in-paris" },
+    { "key": "matcha", "title": "Reco matcha", "slug": "reco-matcha" },
+    { "key": "film", "title": "Reco film", "slug": "reco-film" },
+    { "key": "culture", "title": "Découverte pôle culture", "slug": "decouverte-pole-culture" },
+    { "key": "fun-fact", "title": "Fun fact", "slug": "fun-fact" }
+  ],
+  "authors": [
+    { "key": "loreane", "name": "Loreane" },
+    { "key": "raquel", "name": "Raquel" },
+    { "key": "narmin", "name": "Narmin" },
+    { "key": "my-linh", "name": "My Linh" },
+    { "key": "mariem", "name": "Mariem" }
+  ],
+  "articles": [
+    {
+      "key": "automne-rituels-cocon",
+      "title": "Automne : pourquoi on aime tant nos rituels cocon ?",
+      "slug": "automne-pourquoi-on-aime-nos-rituels-cocon",
+      "category": "tendances",
+      "author": "loreane",
+      "page": 3,
+      "paragraphs": [
+        "Les feuilles se teintent de nuances orangées et tombent doucement sous nos pas. Pas de doute, l’automne est là ! Même quand la pluie s’invite, cette saison agit comme une parenthèse réconfortante dans notre quotidien.",
+        "Au-delà des modes passagères, les tendances automnales sont désormais bien ancrées dans nos vies. Chaque année, c'est le même rituel : le retour de la cannelle, des cinnamon rolls tièdes, du pumpkin spice latte, des plaids moelleux et des soirées devant Gilmore Girls. Mais pourquoi aime-t-on autant y revenir ?",
+        "Parce que l’humain a besoin de repères. Ces habitudes cocon nous apportent une sensation de sécurité et de nostalgie heureuse. À l'approche du froid, retrouver ces petits plaisirs familiers nous fait du bien et nous rassemble.",
+        "Côté style aussi, la transition s'opère naturellement : on délaisse les teintes vives de l'été pour retrouver la chaleur du brun, du bordeaux ou du terracotta. Ces traditions ne s'essoufflent pas, elles se savourent. Et vous, quel est le rituel automnal dont vous ne pourrez plus vous passer ?"
+      ]
+    },
+    {
+      "key": "bois-de-vincennes",
+      "title": "Bois de Vincennes",
+      "slug": "bois-de-vincennes",
+      "category": "paris",
+      "author": "raquel",
+      "page": 4,
+      "paragraphs": [
+        "Pour bien accueillir l’arrivée de l’automne nous vous recommandons d’aller aux Bois de Vincennes. Ce vaste espace vert s’étend sur près de 10% de la superficie totale de Paris. C'est un véritable terrain de jeu qui attend les promeneurs, les sportifs, les familles et tous les amoureux de la nature !",
+        "Autrefois réservé aux chasses royales, ce site historique a bien changé. Entre ses jardins botaniques, son parc zoologique, son hippodrome et ses espaces culturels, c’est devenu l’endroit idéal pour découvrir la biodiversité, se faire plaisir avec plein d'activités et s’offrir une vraie pause loin de l'agitation parisienne.",
+        "Ici vous pouvez trouver le Parc Floral de Paris, le plus grand parc horticole de la capitale. Il fait le bonheur des amateurs de la nature grâce à ses superbes jardins thématiques, ses magnifiques compositions florales et ses petites expositions d'art et de botanique qui changent au fil des saisons.",
+        "N’oublions pas les deux lacs artificiels que les Bois de Vincennes nous offrent : Lac Daumesnil et Lac des Minimes. Vous pourrez louer des barques pour une charmante balade sur l’eau (ouvert de mars à novembre, caution demandée). Profitez des sentiers pour vos balades, vos séances de running ou vos sorties en famille ! Vous pourrez aussi vous détendre dans les espaces pique-nique, installés dans un petit coin tout tranquille."
+      ]
+    },
+    {
+      "key": "pop-up-milia-matcha",
+      "title": "Pop-up Milia Matcha",
+      "slug": "pop-up-milia-matcha",
+      "category": "matcha",
+      "author": "narmin",
+      "page": 5,
+      "paragraphs": [
+        "Pour les amateurs de matcha, je vous conseille de faire un tour au pop-up de Milia Matcha, situé à La Samaritaine, qui sera présent du 3 octobre au 1er novembre.",
+        "Milia Matcha est une marque française spécialisée dans le matcha japonais, créée par Andie, une youtubeuse française également connue sous le nom de « Madame Matcha ». La marque est officiellement lancée en novembre 2023, après plus d’un an de recherche et développement. Son objectif : proposer du matcha 100 % japonais tout en modernisant son image et en créant un lien entre la culture japonaise et un public plus large.",
+        "La marque propose plusieurs variétés de matcha, notamment du matcha cérémonie, ainsi que des versions aromatisées à la vanille, au chocolat blanc, à la fraise, à la cerise et à la banane, cette dernière étant devenue une édition permanente depuis octobre. L’objectif de Milia Matcha est de conserver le goût du matcha malgré les différents arômes proposés. Au pop-up, vous pourrez notamment choisir entre le matcha vanille et le matcha banane, le nouveau parfum de la marque.",
+        "Après l’avoir goûté sans connaître auparavant la marque, je vous le conseille vivement ! Le matcha banane offre un mélange surprenant entre le goût végétal du matcha et une note sucrée et fruitée de banane. Alors, si vous êtes fan de matcha et que vous êtes de passage à La Samaritaine, n’hésitez pas à faire un détour par le pop-up de Milia Matcha."
+      ]
+    },
+    {
+      "key": "the-love-hypothesis-film",
+      "title": "The Love Hypothesis",
+      "slug": "the-love-hypothesis-film",
+      "category": "film",
+      "author": "my-linh",
+      "page": 6,
+      "paragraphs": [
+        "Comment ne pas vous mentionner cette adaptation tant attendue du livre d’Ali Hazelwood ? Mercredi 23 septembre a eu lieu la sortie du film The Love Hypothesis, L’hypothèse amoureuse en français, sur Prime Video.",
+        "Étant une grande fan de romcom et ayant été sur le BookTok en 2021, Ali Hazelwood se fait connaître avec une série de romans s’inscrivant comme des romances dans le monde de la science. Ces livres prônent la place de la femme dans STEM (sciences, technology, engineering, mathematics) mais également l’inégalité qu’elles peuvent rencontrer. Ces livres nous captivent de par les personnages attachants mais aussi ces protagonistes à caractères singuliers et plus qu’appréciables. The Love Hypothesis est publié en France en 2022 et sa belle couverture bleue circula à travers toutes les mains effrénées de toutes.",
+        "C’est en 2026, après le grand succès du livre, que nous avons été gâtés par son adaptation sur Prime Video avec comme star lead : Lili Reinhart, l’actrice qui jouait Betty dans Riverdale. Alors outre son rôle dans Riverdale qu’elle hâte de se moquer à plusieurs reprises, Lili Reinhart effectue une publicité phénoménale pour le film et les fans en raffolent.",
+        "Maintenant que le contexte a été donné, qu’en donne-t-il du film en lui-même ? N’ayant plus relu le livre depuis sa sortie, je n’en avais plus aucun souvenir, j’ai donc un œil frais sur le film et n’ai pas passé l’entièreté du film à le comparer au livre. J’ai adoré le film, il était drôle et la romance était parfaitement construite. Alors oui il n’est pas parfait et ne suit pas fidèlement le livre, mais j’ai été très satisfaite.",
+        "J’ai eu les larmes aux yeux plus d’une fois grâce à l’amitié touchante que Olive et Anh ont, j’ai eu le cœur qui palpitait lorsque l’alchimie évidente d’Adam et Olive se ressentait. Je ne tarde d’aller le regarder en boucle, ce film est plus que réconfortant et vous passez à côté de quelque chose si vous avez lu le livre ou si vous raffolez d’une bonne romcom."
+      ]
+    },
+    {
+      "key": "balade-quartier-latin",
+      "title": "Balade dans le Quartier Latin",
+      "slug": "balade-quartier-latin",
+      "category": "culture",
+      "author": "narmin",
+      "page": 7,
+      "paragraphs": [
+        "Pour notre première balade, nos responsables du pôle Culture, Maya et Louanne, nous avaient préparé un itinéraire riche en découvertes pour explorer le Quartier Latin, entre lieux emblématiques, recoins méconnus et grandes pages de l’histoire parisienne.",
+        "La balade débute au théâtre de l’Odéon, construit au XVIIIe siècle sous Louis XVI. Un premier arrêt qui donne immédiatement le ton : celui d’un quartier où la culture occupe une place centrale. Nous poursuivons ensuite vers la place de la Sorbonne et la célèbre université, dont les origines remontent au Moyen Âge et qui reste aujourd’hui l’un des symboles du quartier.",
+        "Direction ensuite le musée de Cluny, véritable résumé de l’histoire du Quartier Latin. Le musée abrite notamment les vestiges des anciens thermes romains de Lutèce, témoins du passé antique de Paris. L’itinéraire nous mène ensuite vers les quais de Seine, avant de traverser plusieurs rues emblématiques du quartier. Rue de la Huchette, puis rue du Chat-qui-Pêche, considérée comme la plus étroite de Paris : autant de petits passages qui donnent au quartier son charme particulier.",
+        "La balade se poursuit avec un arrêt chez Shakespeare and Company, célèbre librairie anglophone installée face à Notre-Dame, puis dans les rues Galande, Dante et du Fouarre, où l’on retrouve les traces du Paris médiéval et de son histoire universitaire.",
+        "Nous rejoignons ensuite le quai de la Tournelle, célèbre notamment pour ses bouquinistes, avant de poursuivre vers l’Institut du Monde Arabe, inauguré en 1987. Le bâtiment symbolise la volonté de créer un dialogue culturel entre la France, l’Europe et le monde arabe.",
+        "Changement d’époque avec le Jardin des Plantes, créé en 1635 comme jardin royal destiné aux médecins et aux apothicaires, devenu au fil des siècles un important centre scientifique. Quelques rues plus loin, les Arènes de Lutèce nous ramènent à l’époque gallo-romaine et rappellent que le Quartier Latin se trouve au cœur de l’ancienne Lutèce.",
+        "Enfin, nous découvrons les vestiges de l’enceinte de Philippe Auguste, dernière trace du Paris médiéval sur notre parcours, avant de terminer à la bibliothèque Sainte-Geneviève et au Panthéon. Entre savoir, histoire et mémoire nationale, ces deux monuments offrent une conclusion parfaite à notre balade.",
+        "Au fil de cet itinéraire, nous avons ainsi découvert bien plus qu’un simple quartier parisien : un véritable concentré d’histoire, de culture et de patrimoine, où chaque rue semble raconter une époque différente."
+      ]
+    },
+    {
+      "key": "thats-so-french",
+      "title": "That’s so French",
+      "slug": "thats-so-french",
+      "category": "fun-fact",
+      "author": "mariem",
+      "page": 8,
+      "paragraphs": [
+        "En France, commander un café peut parfois durer 2 minutes, mais rester assis à la terrasse avec ce même café 2 heures. That’s so French.",
+        "En France on compte plus de 1000 variétés de fromages, et l’on peut finir par débattre sur quel est le meilleur fromage ? That’s so French.",
+        "La Tour Eiffel était censée être temporaire. Elle devait être démontée après 20 ans, mais elle est devenue une icône du pays. That’s so French.",
+        "La baguette est tellement importante pour les Français qu’elle est inscrite au patrimoine culturel immatériel de l’UNESCO. That’s so French."
+      ]
+    }
+  ]
+}
