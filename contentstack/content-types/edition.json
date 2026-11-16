@@ -1,0 +1,192 @@
+{
+  "title": "Edition",
+  "uid": "edition",
+  "description": "A monthly Parismus Journal issue with cover, introduction, table of contents, and featured story.",
+  "schema": [
+    {
+      "display_name": "Title",
+      "uid": "title",
+      "data_type": "text",
+      "mandatory": true,
+      "unique": true,
+      "field_metadata": {
+        "_default": true
+      },
+      "multiple": false
+    },
+    {
+      "display_name": "Slug",
+      "uid": "slug",
+      "data_type": "text",
+      "mandatory": true,
+      "unique": true,
+      "field_metadata": {
+        "description": "URL slug used at /editions/[slug]."
+      },
+      "multiple": false
+    },
+    {
+      "display_name": "Edition number",
+      "uid": "edition_number",
+      "data_type": "number",
+      "field_metadata": {},
+      "multiple": false,
+      "mandatory": true,
+      "unique": false
+    },
+    {
+      "display_name": "Month",
+      "uid": "month",
+      "data_type": "text",
+      "mandatory": true,
+      "unique": false,
+      "field_metadata": {},
+      "multiple": false
+    },
+    {
+      "display_name": "Year",
+      "uid": "year",
+      "data_type": "number",
+      "field_metadata": {},
+      "multiple": false,
+      "mandatory": true,
+      "unique": false
+    },
+    {
+      "display_name": "Publication date",
+      "uid": "publication_date",
+      "data_type": "isodate",
+      "startDate": null,
+      "endDate": null,
+      "field_metadata": {
+        "default_value": ""
+      },
+      "multiple": false,
+      "mandatory": true,
+      "unique": false
+    },
+    {
+      "display_name": "Cover image",
+      "uid": "cover_image",
+      "data_type": "file",
+      "extensions": [
+        "jpg",
+        "jpeg",
+        "png",
+        "webp"
+      ],
+      "field_metadata": {
+        "rich_text_type": "standard"
+      },
+      "multiple": false,
+      "mandatory": true,
+      "unique": false
+    },
+    {
+      "display_name": "Subtitle",
+      "uid": "subtitle",
+      "data_type": "text",
+      "mandatory": false,
+      "unique": false,
+      "field_metadata": {},
+      "multiple": false
+    },
+    {
+      "display_name": "Introduction",
+      "uid": "introduction",
+      "data_type": "json",
+      "field_metadata": {
+        "allow_json_rte": true,
+        "rich_text_type": "custom",
+        "default_value": "",
+        "options": [
+          "h2",
+          "h3",
+          "bold",
+          "italic",
+          "underline",
+          "blockquote",
+          "lists",
+          "link",
+          "imagemanager"
+        ]
+      },
+      "reference_to": [
+        "article"
+      ],
+      "non_localizable": false,
+      "multiple": false,
+      "mandatory": true,
+      "unique": false
+    },
+    {
+      "display_name": "Stories",
+      "uid": "stories",
+      "data_type": "reference",
+      "reference_to": "article",
+      "field_metadata": {
+        "ref_multiple": true,
+        "description": "Add between five and ten published articles in the order they should appear in the table of contents. Include the featured story in this list."
+      },
+      "mandatory": true,
+      "multiple": false,
+      "unique": false
+    },
+    {
+      "display_name": "Featured story",
+      "uid": "featured_story",
+      "data_type": "reference",
+      "reference_to": "article",
+      "field_metadata": {
+        "ref_multiple": false
+      },
+      "mandatory": true,
+      "multiple": false,
+      "unique": false
+    },
+    {
+      "display_name": "Theme accent",
+      "uid": "theme_accent",
+      "data_type": "text",
+      "mandatory": false,
+      "unique": false,
+      "field_metadata": {},
+      "multiple": false
+    },
+    {
+      "display_name": "Editorial status",
+      "uid": "status",
+      "data_type": "text",
+      "display_type": "dropdown",
+      "enum": {
+        "advanced": false,
+        "choices": [
+          {
+            "value": "draft"
+          },
+          {
+            "value": "published"
+          },
+          {
+            "value": "archived"
+          }
+        ]
+      },
+      "multiple": false,
+      "field_metadata": {
+        "description": "Only entries published to the delivery environment and marked Published appear publicly.",
+        "default_value": "draft"
+      },
+      "mandatory": true,
+      "unique": false
+    }
+  ],
+  "options": {
+    "is_page": true,
+    "singleton": false,
+    "title": "title",
+    "sub_title": [],
+    "url_pattern": "/edition/:slug",
+    "url_prefix": "/editions"
+  }
+}

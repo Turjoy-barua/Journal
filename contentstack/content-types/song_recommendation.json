@@ -1,0 +1,108 @@
+{
+  "title": "Song Recommendation",
+  "uid": "song_recommendation",
+  "description": "A structured song recommendation referenced by an editorial article.",
+  "schema": [
+    {
+      "display_name": "Song title",
+      "uid": "title",
+      "data_type": "text",
+      "mandatory": true,
+      "unique": true,
+      "field_metadata": {
+        "_default": true
+      },
+      "multiple": false
+    },
+    {
+      "display_name": "Slug",
+      "uid": "slug",
+      "data_type": "text",
+      "mandatory": true,
+      "unique": true,
+      "field_metadata": {},
+      "multiple": false
+    },
+    {
+      "display_name": "Artist",
+      "uid": "artist",
+      "data_type": "text",
+      "mandatory": true,
+      "unique": false,
+      "field_metadata": {},
+      "multiple": false
+    },
+    {
+      "display_name": "Cover image",
+      "uid": "cover_image",
+      "data_type": "file",
+      "extensions": [
+        "jpg",
+        "jpeg",
+        "png",
+        "webp"
+      ],
+      "field_metadata": {
+        "rich_text_type": "standard"
+      },
+      "multiple": false,
+      "mandatory": false,
+      "unique": false
+    },
+    {
+      "display_name": "Listening URL",
+      "uid": "listening_url",
+      "data_type": "text",
+      "mandatory": false,
+      "unique": false,
+      "field_metadata": {},
+      "multiple": false
+    },
+    {
+      "display_name": "Recommendation",
+      "uid": "recommendation",
+      "data_type": "json",
+      "field_metadata": {
+        "allow_json_rte": true,
+        "rich_text_type": "custom",
+        "default_value": "",
+        "options": [
+          "h2",
+          "h3",
+          "bold",
+          "italic",
+          "underline",
+          "blockquote",
+          "lists",
+          "link",
+          "imagemanager"
+        ]
+      },
+      "reference_to": [
+        "article"
+      ],
+      "non_localizable": false,
+      "multiple": false,
+      "mandatory": false,
+      "unique": false
+    },
+    {
+      "display_name": "Recommended by",
+      "uid": "recommended_by",
+      "data_type": "reference",
+      "reference_to": "author",
+      "field_metadata": {
+        "ref_multiple": false
+      },
+      "mandatory": false,
+      "multiple": false,
+      "unique": false
+    }
+  ],
+  "options": {
+    "is_page": false,
+    "singleton": false,
+    "title": "title",
+    "sub_title": []
+  }
+}

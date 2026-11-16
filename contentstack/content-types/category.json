@@ -1,0 +1,45 @@
+{
+  "title": "Category",
+  "uid": "category",
+  "description": "One of the eight Parismus Journal editorial categories.",
+  "schema": [
+    {
+      "display_name": "Title",
+      "uid": "title",
+      "data_type": "text",
+      "mandatory": true,
+      "unique": true,
+      "field_metadata": {
+        "_default": true
+      },
+      "multiple": false
+    },
+    {
+      "display_name": "Slug",
+      "uid": "slug",
+      "data_type": "text",
+      "mandatory": true,
+      "unique": true,
+      "field_metadata": {},
+      "multiple": false
+    },
+    {
+      "display_name": "Description",
+      "uid": "description",
+      "data_type": "text",
+      "mandatory": false,
+      "unique": false,
+      "field_metadata": {
+        "description": "Short introduction shown on the categories page.",
+        "multiline": true
+      },
+      "multiple": false
+    }
+  ],
+  "options": {
+    "is_page": false,
+    "singleton": false,
+    "title": "title",
+    "sub_title": []
+  }
+}

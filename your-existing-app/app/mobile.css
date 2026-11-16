@@ -137,8 +137,7 @@
     font-size: 8px;
   }
 
-  .section,
-  .postcard-section {
+  .section {
     padding: 60px 6vw;
   }
 
@@ -150,7 +149,6 @@
   }
 
   .section-heading h2,
-  .lens-title h2,
   .recommend-intro h2 {
     font-size: clamp(36px, 10vw, 46px);
     line-height: .98;
@@ -189,50 +187,6 @@
     font-size: 9px;
   }
 
-  .lens-section {
-    padding: 56px 6vw;
-    grid-template-rows: auto minmax(190px, 62vw);
-    gap: 12px;
-  }
-
-  .lens-title h2 {
-    font-size: clamp(40px, 11vw, 50px);
-  }
-
-  .lens-title p {
-    font-size: 15px;
-    line-height: 1.5;
-  }
-
-  .lens-main {
-    height: auto;
-  }
-
-  .lens-small {
-    height: clamp(130px, 40vw, 165px);
-  }
-
-  .lens-photo span {
-    left: 12px;
-    bottom: 12px;
-    font-size: 17px;
-  }
-
-  .postcard-preview {
-    gap: 28px;
-  }
-
-  .postcard-image {
-    height: auto;
-    aspect-ratio: 4 / 3;
-    margin-bottom: 14px;
-  }
-
-  .postcard-card h3 {
-    font-size: 28px;
-  }
-
-  .postcard-card p,
   .recommend-intro p,
   .recommend-item p {
     font-size: 16px;
@@ -265,27 +219,6 @@
     line-height: 1.5;
   }
 
-  .newsletter {
-    padding: 62px 6vw;
-  }
-
-  .newsletter h2 {
-    font-size: clamp(37px, 10vw, 46px);
-  }
-
-  .newsletter > p {
-    font-size: 17px;
-    line-height: 1.5;
-  }
-
-  .newsletter form {
-    gap: 8px;
-  }
-
-  .newsletter input {
-    font-size: 16px;
-  }
-
   .footer {
     padding: 40px 6vw calc(20px + env(safe-area-inset-bottom));
   }
@@ -315,8 +248,6 @@
   }
 
   .listing-page,
-  .photography-page,
-  .postcards-page,
   .about-page {
     padding: 48px 6vw 68px;
   }
@@ -442,72 +373,6 @@
     padding: 54px 6vw 0;
   }
 
-  .postcard-gallery {
-    gap: 32px;
-  }
-
-  .postcard-large-image,
-  .postcard-large-1 .postcard-large-image {
-    height: auto;
-    aspect-ratio: 4 / 3;
-  }
-
-  .postcard-info h2 {
-    font-size: 29px;
-  }
-
-  .postcard-info p {
-    font-size: 16px;
-    line-height: 1.5;
-  }
-
-  .postcard-story-cover {
-    height: 76svh;
-    min-height: 300px;
-    max-height: 560px;
-  }
-
-  .postcard-story-header h1 {
-    font-size: clamp(40px, 11.5vw, 56px);
-    line-height: .98;
-  }
-
-  .postcard-story-header > p,
-  .postcard-story-body {
-    font-size: 18px;
-    line-height: 1.55;
-  }
-
-  .share-row {
-    align-items: center;
-    flex-direction: row;
-  }
-
-  .next-postcard {
-    gap: 12px;
-  }
-
-  .next-postcard > a {
-    font-size: 18px;
-  }
-
-  .photo-grid {
-    grid-auto-rows: clamp(130px, 42vw, 175px);
-  }
-
-  .lightbox {
-    padding: max(56px, env(safe-area-inset-top)) 10px max(20px, env(safe-area-inset-bottom));
-  }
-
-  .lightbox-close,
-  .lightbox-prev,
-  .lightbox-next {
-    width: 48px;
-    height: 48px;
-    display: grid;
-    place-items: center;
-  }
-
   .about-hero {
     height: auto;
     aspect-ratio: 4 / 3;
@@ -549,17 +414,13 @@
   }
 
   .section,
-  .postcard-section,
   .listing-page,
-  .photography-page,
-  .postcards-page,
   .about-page {
     padding-left: 5vw;
     padding-right: 5vw;
   }
 
   .section-heading h2,
-  .lens-title h2,
   .recommend-intro h2 {
     font-size: 36px;
   }
@@ -583,10 +444,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hero-visual img,
-  .story-image img,
-  .lens-photo img,
-  .postcard-image img,
-  .postcard-large-image img {
+  .story-image img {
     transition: none;
   }
 }

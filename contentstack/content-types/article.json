@@ -1,0 +1,210 @@
+{
+  "title": "Article",
+  "uid": "article",
+  "description": "A Parismus Journal story belonging to a monthly edition.",
+  "schema": [
+    {
+      "display_name": "Title",
+      "uid": "title",
+      "data_type": "text",
+      "mandatory": true,
+      "unique": true,
+      "field_metadata": {
+        "_default": true
+      },
+      "multiple": false
+    },
+    {
+      "display_name": "Slug",
+      "uid": "slug",
+      "data_type": "text",
+      "mandatory": true,
+      "unique": true,
+      "field_metadata": {
+        "description": "URL slug used at /articles/[slug]."
+      },
+      "multiple": false
+    },
+    {
+      "display_name": "Subtitle",
+      "uid": "subtitle",
+      "data_type": "text",
+      "mandatory": false,
+      "unique": false,
+      "field_metadata": {},
+      "multiple": false
+    },
+    {
+      "display_name": "Category",
+      "uid": "category",
+      "data_type": "reference",
+      "reference_to": "category",
+      "field_metadata": {
+        "ref_multiple": false
+      },
+      "mandatory": true,
+      "multiple": false,
+      "unique": false
+    },
+    {
+      "display_name": "Author",
+      "uid": "author",
+      "data_type": "reference",
+      "reference_to": "author",
+      "field_metadata": {
+        "ref_multiple": false
+      },
+      "mandatory": true,
+      "multiple": false,
+      "unique": false
+    },
+    {
+      "display_name": "Cover image",
+      "uid": "cover_image",
+      "data_type": "file",
+      "extensions": [
+        "jpg",
+        "jpeg",
+        "png",
+        "webp"
+      ],
+      "field_metadata": {
+        "rich_text_type": "standard"
+      },
+      "multiple": false,
+      "mandatory": false,
+      "unique": false
+    },
+    {
+      "display_name": "Rich text content",
+      "uid": "rich_text_content",
+      "data_type": "json",
+      "field_metadata": {
+        "allow_json_rte": true,
+        "rich_text_type": "custom",
+        "default_value": "",
+        "options": [
+          "h2",
+          "h3",
+          "bold",
+          "italic",
+          "underline",
+          "blockquote",
+          "lists",
+          "link",
+          "imagemanager"
+        ]
+      },
+      "reference_to": [
+        "article"
+      ],
+      "non_localizable": false,
+      "multiple": false,
+      "mandatory": false,
+      "unique": false
+    },
+    {
+      "display_name": "Publication date",
+      "uid": "publication_date",
+      "data_type": "isodate",
+      "startDate": null,
+      "endDate": null,
+      "field_metadata": {
+        "default_value": ""
+      },
+      "multiple": false,
+      "mandatory": true,
+      "unique": false
+    },
+    {
+      "display_name": "Edition",
+      "uid": "edition",
+      "data_type": "reference",
+      "reference_to": "edition",
+      "field_metadata": {
+        "ref_multiple": false
+      },
+      "mandatory": true,
+      "multiple": false,
+      "unique": false
+    },
+    {
+      "display_name": "Featured",
+      "uid": "featured",
+      "data_type": "boolean",
+      "field_metadata": {
+        "default_value": false
+      },
+      "multiple": false,
+      "mandatory": false,
+      "unique": false
+    },
+    {
+      "display_name": "Reading time (minutes)",
+      "uid": "reading_time",
+      "data_type": "number",
+      "field_metadata": {
+        "default_value": 5
+      },
+      "multiple": false,
+      "mandatory": false,
+      "unique": false
+    },
+    {
+      "display_name": "Excerpt",
+      "uid": "excerpt",
+      "data_type": "text",
+      "mandatory": false,
+      "unique": false,
+      "field_metadata": {
+        "description": "Optional summary used on article cards.",
+        "multiline": true
+      },
+      "multiple": false
+    },
+    {
+      "display_name": "Related event",
+      "uid": "related_event",
+      "data_type": "reference",
+      "reference_to": "event",
+      "field_metadata": {
+        "ref_multiple": false
+      },
+      "mandatory": false,
+      "multiple": false,
+      "unique": false
+    },
+    {
+      "display_name": "Book recommendation",
+      "uid": "book_recommendation",
+      "data_type": "reference",
+      "reference_to": "book_recommendation",
+      "field_metadata": {
+        "ref_multiple": false
+      },
+      "mandatory": false,
+      "multiple": false,
+      "unique": false
+    },
+    {
+      "display_name": "Song recommendation",
+      "uid": "song_recommendation",
+      "data_type": "reference",
+      "reference_to": "song_recommendation",
+      "field_metadata": {
+        "ref_multiple": false
+      },
+      "mandatory": false,
+      "multiple": false,
+      "unique": false
+    }
+  ],
+  "options": {
+    "is_page": true,
+    "singleton": false,
+    "title": "title",
+    "sub_title": [],
+    "url_pattern": "/article/:slug",
+    "url_prefix": "/articles"
+  }
+}

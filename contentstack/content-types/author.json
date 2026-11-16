@@ -1,0 +1,78 @@
+{
+  "title": "Author",
+  "uid": "author",
+  "description": "A Journalmus contributor and article author.",
+  "schema": [
+    {
+      "display_name": "Name",
+      "uid": "name",
+      "data_type": "text",
+      "mandatory": true,
+      "unique": true,
+      "field_metadata": {
+        "_default": true
+      },
+      "multiple": false
+    },
+    {
+      "display_name": "Slug",
+      "uid": "slug",
+      "data_type": "text",
+      "mandatory": true,
+      "unique": true,
+      "field_metadata": {},
+      "multiple": false
+    },
+    {
+      "display_name": "Portrait",
+      "uid": "portrait",
+      "data_type": "file",
+      "extensions": [
+        "jpg",
+        "jpeg",
+        "png",
+        "webp"
+      ],
+      "field_metadata": {
+        "rich_text_type": "standard"
+      },
+      "multiple": false,
+      "mandatory": false,
+      "unique": false
+    },
+    {
+      "display_name": "Biography",
+      "uid": "biography",
+      "data_type": "json",
+      "field_metadata": {
+        "allow_json_rte": true,
+        "rich_text_type": "custom",
+        "default_value": "",
+        "options": [
+          "h2",
+          "h3",
+          "bold",
+          "italic",
+          "underline",
+          "blockquote",
+          "lists",
+          "link",
+          "imagemanager"
+        ]
+      },
+      "reference_to": [
+        "article"
+      ],
+      "non_localizable": false,
+      "multiple": false,
+      "mandatory": false,
+      "unique": false
+    }
+  ],
+  "options": {
+    "is_page": false,
+    "singleton": false,
+    "title": "name",
+    "sub_title": []
+  }
+}
