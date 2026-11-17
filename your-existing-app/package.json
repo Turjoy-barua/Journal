@@ -6,7 +6,7 @@
     "dev": "next dev --hostname 127.0.0.1",
     "build": "next build",
     "start": "next start",
-    "import:editions": "node ../contentstack/seed-editions.mjs"
+    "import:editions": "node ../studio-journalmus/scripts/import-editions.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",

@@ -2,9 +2,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type {CSSProperties} from 'react'
 import {ArrowRight, ArrowUpRight} from 'lucide-react'
-import ContentstackRichText from '@/components/ContentstackRichText'
+import PortableTextContent from '@/components/PortableTextContent'
 import StoryCard from '@/components/StoryCard'
-import {getPublishedEditions, formatEditionDate} from '@/lib/contentstack'
+import {getPublishedEditions, formatEditionDate} from '@/lib/sanity'
 
 export const revalidate = 60
 
@@ -48,7 +48,7 @@ export default async function Home() {
     {Boolean(edition.introduction) && <section className="edition-introduction">
       <span className="eyebrow">Le mot de l’équipe · {formatEditionDate(edition)}</span>
       <h2>Bienvenue <i>dans cette édition.</i></h2>
-      <ContentstackRichText value={edition.introduction}/>
+      <PortableTextContent value={edition.introduction}/>
     </section>}
 
     {featured && <section className="section edition-featured-section">

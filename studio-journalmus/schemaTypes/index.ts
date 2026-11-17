@@ -1,2 +1,9 @@
-import article from './article';import category from './category';import author from './author';import postcard from './postcard';import photoGallery from './photoGallery';import bookRecommendation from './bookRecommendation';import songRecommendation from './songRecommendation';import event from './event';import podcastEpisode from './podcastEpisode';
-export const schemaTypes=[article,category,author,postcard,photoGallery,bookRecommendation,songRecommendation,event,podcastEpisode];
+import article from './article'
+import edition from './edition'
+import category from './category'
+import author from './author'
+import bookRecommendation from './bookRecommendation'
+import songRecommendation from './songRecommendation'
+import event from './event'
+
+export const schemaTypes = [edition, article, author, category, event, bookRecommendation, songRecommendation]

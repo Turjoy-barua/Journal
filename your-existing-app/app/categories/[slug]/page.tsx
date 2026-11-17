@@ -1,5 +1,5 @@
 import {notFound} from 'next/navigation'
-import {getPublishedArticleCategories, getPublishedArticles} from '@/lib/contentstack'
+import {getPublishedArticleCategories, getPublishedArticles} from '@/lib/sanity'
 import StoryCard from '@/components/StoryCard'
 
 export const revalidate = 60

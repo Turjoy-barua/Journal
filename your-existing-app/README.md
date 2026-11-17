@@ -1,41 +1,40 @@
 # Parismus Journal
 
-A monthly digital edition for the Parismus student association, built with Next.js App Router and Contentstack. The site is organized around the newest published issue, article pages, category pages, and an edition archive.
+A monthly digital edition for the Parismus student association. The Next.js site reads published Edition and Article documents from the standalone Sanity Studio in `../studio-journalmus`.
 
 ## Run locally
 
-Requirements: Node.js 20.9+.
+From the repository root, run the web app and Studio in separate terminals:
 
 ```sh
-npm install
-cp .env.example .env.local
-npm run dev
+npm --prefix your-existing-app run dev
+npm --prefix studio-journalmus run dev
 ```
 
-Set the Contentstack API key, Delivery Token, environment, and locale in `.env.local`. Editorial content is served from the published Contentstack Delivery API. Without credentials, edition and article pages show empty states; no sample monthly issue or cover is hardcoded.
+The site uses Sanity project `g57lcjmj`, dataset `production` by default. Override these with `NEXT_PUBLIC_SANITY_PROJECT_ID` and `NEXT_PUBLIC_SANITY_DATASET` in `.env.local` when needed. A read token is only required for a private dataset. Published Sanity content revalidates at most every 60 seconds.
 
-## Contentstack models
+## Studio editing
 
-Importable model definitions live in `../contentstack/content-types/`:
+Open `http://localhost:3333` and select **Édition mensuelle** to create an issue. Create or select Category and Author documents, then create and publish 5–10 Articles. Create the Edition with its title, month, year, cover, introduction, ordered Article references, and featured story. Set its status to **Publié** and publish it. The optional Article → Edition reference can be added after the Edition exists. Draft and archived editions remain off the public site.
 
-- Edition
-- Article
-- Author
-- Category
-- Event
-- Book Recommendation
-- Song Recommendation
+The schemas include Edition, Article, Author, Category, Event, Book Recommendation, and Song Recommendation. Images are supported as normal article/edition media. There are no postcard, photo gallery, podcast, or ambient-audio content types.
 
-Photography is handled through Edition and Article cover images and images in article rich text. There are no standalone photography, photo essay, gallery, postcard, or ambient audio features or routes.
+## Import the supplied issues
 
-See `../contentstack/README.md` for Contentstack setup, model relationships, configuration, and the monthly publishing workflow.
+The first two issues are maintained as editable seed manifests in `content/`. To put them into Sanity, add a write token named `SANITY_API_TOKEN` to `studio-journalmus/.env` or `your-existing-app/.env.local`, then run:
+
+```sh
+npm --prefix your-existing-app run import:editions
+```
+
+The importer creates or updates Category, Author, Article, Edition, and image asset documents. Use a token with dataset write access and keep it out of `NEXT_PUBLIC_` variables.
 
 ## Routes
 
 - `/` — latest published edition
-- `/editions` — complete chronological edition archive
-- `/editions/[slug]` — cover, introduction, featured story, table of contents, and edition stories
+- `/editions` — chronological edition archive
+- `/editions/[slug]` — cover, introduction, featured story, table of contents, and issue stories
 - `/articles/[slug]` — full article
-- `/articles` and `/categories` — published editorial indexes
+- `/articles` and `/categories` — editorial indexes
 
-An edition appears publicly only when it is published to the configured Delivery API environment, has Editorial status `published`, and contains 5–10 published stories. The app keeps article pages hidden until their linked edition is published.
+If the Sanity dataset has no valid published editions yet, the site temporarily displays the supplied seed issues so the public pages are not blank. Once an Edition is published in Sanity, Sanity becomes the source for the archive and articles.

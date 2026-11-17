@@ -3,9 +3,9 @@ import Link from 'next/link'
 import {notFound} from 'next/navigation'
 import type {CSSProperties} from 'react'
 import {ArrowLeft, ArrowRight, ArrowUpRight} from 'lucide-react'
-import ContentstackRichText from '@/components/ContentstackRichText'
+import PortableTextContent from '@/components/PortableTextContent'
 import StoryCard from '@/components/StoryCard'
-import {getPublishedEditionBySlug, formatEditionDate} from '@/lib/contentstack'
+import {getPublishedEditionBySlug, formatEditionDate} from '@/lib/sanity'
 
 export const revalidate = 60
 
@@ -37,7 +37,7 @@ export default async function EditionPage({params}:{params:Promise<{slug:string}
       {edition.coverImage ? <Image src={edition.coverImage} alt={edition.coverAlt} fill priority sizes="(max-width:700px) 100vw, 90vw"/> : <div className="edition-cover-placeholder"/>}
       <figcaption>Nº {String(edition.editionNumber).padStart(2, '0')} <span>—</span> {formatEditionDate(edition)}</figcaption>
     </figure>
-    {Boolean(edition.introduction) && <section className="edition-page-intro"><span className="eyebrow">Le mot de l’équipe</span><ContentstackRichText value={edition.introduction}/></section>}
+    {Boolean(edition.introduction) && <section className="edition-page-intro"><span className="eyebrow">Le mot de l’équipe</span><PortableTextContent value={edition.introduction}/></section>}
     {stories.length > 0 && <section className="edition-toc" aria-labelledby="edition-toc-title">
       <div className="section-heading"><div><span className="eyebrow">Sommaire · {stories.length} histoires</span><h2 id="edition-toc-title">Dans <i>ce numéro.</i></h2></div></div>
       <ol>{stories.map((story, index) => <li key={story.uid}>

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import {getPublishedArticleCategories} from '@/lib/contentstack'
+import {getPublishedArticleCategories} from '@/lib/sanity'
 
 export const revalidate = 60
 export const metadata = {title: 'Rubriques', description: 'Explorez les rubriques de Parismus Journal.'}

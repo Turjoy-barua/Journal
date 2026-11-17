@@ -1,5 +1,5 @@
 import type {MetadataRoute} from 'next'
-import {getPublishedArticles, getPublishedArticleCategories, getPublishedEditions} from '@/lib/contentstack'
+import {getPublishedArticles, getPublishedArticleCategories, getPublishedEditions} from '@/lib/sanity'
 
 export default async function sitemap():Promise<MetadataRoute.Sitemap> {
   const [articles, categories, editions] = await Promise.all([getPublishedArticles(), getPublishedArticleCategories(), getPublishedEditions()])

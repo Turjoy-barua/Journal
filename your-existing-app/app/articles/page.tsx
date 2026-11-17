@@ -1,4 +1,4 @@
-import {getPublishedArticles} from '@/lib/contentstack'
+import {getPublishedArticles} from '@/lib/sanity'
 import StoryCard from '@/components/StoryCard'
 import {Search} from 'lucide-react'
 

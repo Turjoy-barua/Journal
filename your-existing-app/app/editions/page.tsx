@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type {CSSProperties} from 'react'
 import {ArrowRight} from 'lucide-react'
-import {getPublishedEditions, formatEditionDate} from '@/lib/contentstack'
+import {getPublishedEditions, formatEditionDate} from '@/lib/sanity'
 
 export const revalidate = 60
 export const metadata = {title: 'Les éditions', description: 'Parcourez les éditions de Parismus Journal.'}
@@ -20,6 +20,6 @@ export default async function EditionsArchive() {
         {edition.subtitle && <p>{edition.subtitle}</p>}
         <span className="text-link">Feuilleter l’édition <ArrowRight size={15}/></span>
       </Link>
-    })}</div> : <div className="empty-state"><span className="eyebrow">Archive bientôt ouverte</span><h2>Aucune édition publiée pour le moment.</h2><p>Les éditions apparaîtront ici après leur publication dans Contentstack.</p></div>}
+      })}</div> : <div className="empty-state"><span className="eyebrow">Archive bientôt ouverte</span><h2>Aucune édition publiée pour le moment.</h2><p>Les éditions apparaîtront ici après leur publication dans Sanity.</p></div>}
   </div>
 }

@@ -3,9 +3,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {ArrowLeft, ArrowUpRight} from 'lucide-react'
 import StoryCard from '@/components/StoryCard'
-import ContentstackRichText from '@/components/ContentstackRichText'
+import PortableTextContent from '@/components/PortableTextContent'
 import ShareButton from '@/components/ShareButton'
-import {getPublishedArticleBySlug, getPublishedArticles} from '@/lib/contentstack'
+import {getPublishedArticleBySlug, getPublishedArticles} from '@/lib/sanity'
 
 export const revalidate = 60
 
@@ -25,7 +25,7 @@ export default async function Article({params}:{params:Promise<{slug:string}>}) 
     <div className="article-top"><Link href={`/categories/${story.categorySlug}`} className="back-link"><ArrowLeft size={15}/> {story.category}</Link><span className="eyebrow">{story.readingTime} de lecture</span></div>
     <header className="article-header"><span className="eyebrow">{story.category} · {story.date}</span><h1>{story.title}</h1>{story.subtitle && <p className="article-subtitle">{story.subtitle}</p>}<div className="byline">Par {story.author}<span>·</span>{story.date}</div></header>
     {story.image && <figure className="article-cover"><Image src={story.image} alt={story.imageAlt} fill priority sizes="100vw"/><figcaption>{story.imageAlt}</figcaption></figure>}
-    {story.richTextContent ? <><ContentstackRichText value={story.richTextContent}/><div className="article-body article-body-footer"><div className="article-endnote">Une histoire du <Link href="/">Parismus Journal</Link>.</div><div className="article-share"><span className="eyebrow">À partager</span><ShareButton/></div></div></> : <div className="article-body"><div className="empty-state"><p>Le texte de cet article est en préparation.</p></div></div>}
+    {story.richTextContent ? <><PortableTextContent value={story.richTextContent}/><div className="article-body article-body-footer"><div className="article-endnote">Une histoire du <Link href="/">Parismus Journal</Link>.</div><div className="article-share"><span className="eyebrow">À partager</span><ShareButton/></div></div></> : <div className="article-body"><div className="empty-state"><p>Le texte de cet article est en préparation.</p></div></div>}
     {related.length > 0 && <section className="related-section"><div className="section-heading"><div><span className="eyebrow">Pour continuer</span><h2>À lire <i>aussi.</i></h2></div><Link className="text-link" href="/articles">Toutes les histoires <ArrowUpRight size={15}/></Link></div><div className="listing-grid">{related.map((item) => <StoryCard key={item.uid} story={item}/>)}</div></section>}
   </article>
 }
