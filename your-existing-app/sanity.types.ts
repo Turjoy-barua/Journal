@@ -153,11 +153,9 @@ export type Edition = {
     _type: "block";
     _key: string;
   }>;
-  stories: Array<
-    {
-      _key: string;
-    } & ArticleReference
-  >;
+  stories: Array<{
+    _key: string;
+  } & ArticleReference>;
   featuredStory: ArticleReference;
   themeAccent?: string;
   status: "draft" | "published" | "archived";
@@ -204,46 +202,41 @@ export type Article = {
     alt?: string;
     _type: "image";
   };
-  body?: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: "span";
-          _key: string;
-        }>;
-        style?: "normal" | "h2" | "h3" | "blockquote";
-        listItem?: "bullet" | "number";
-        markDefs?: Array<{
-          href?: string;
-          _type: "link";
-          _key: string;
-        }>;
-        level?: number;
-        _type: "block";
-        _key: string;
-      }
-    | {
-        asset?: SanityImageAssetReference;
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt?: string;
-        caption?: string;
-        credit?: string;
-        _type: "image";
-        _key: string;
-      }
-  >;
+  body?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h2" | "h3" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    caption?: string;
+    credit?: string;
+    _type: "image";
+    _key: string;
+  }>;
   edition?: EditionReference;
   publishedAt: string;
   featured?: boolean;
   readingTime?: number;
-  related?: Array<
-    {
-      _key: string;
-    } & ArticleReference
-  >;
+  related?: Array<{
+    _key: string;
+  } & ArticleReference>;
   seoTitle?: string;
   seoDescription?: string;
 };
@@ -388,27 +381,5 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes =
-  | SanityImageAssetReference
-  | ArticleReference
-  | SongRecommendation
-  | SanityImageCrop
-  | SanityImageHotspot
-  | BookRecommendation
-  | Slug
-  | Event
-  | Edition
-  | CategoryReference
-  | AuthorReference
-  | EditionReference
-  | Article
-  | Author
-  | Category
-  | SanityImagePaletteSwatch
-  | SanityImagePalette
-  | SanityImageDimensions
-  | SanityImageMetadata
-  | SanityFileAsset
-  | SanityAssetSourceData
-  | SanityImageAsset
-  | Geopoint;
+export type AllSanitySchemaTypes = SanityImageAssetReference | ArticleReference | SongRecommendation | SanityImageCrop | SanityImageHotspot | BookRecommendation | Slug | Event | Edition | CategoryReference | AuthorReference | EditionReference | Article | Author | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+
