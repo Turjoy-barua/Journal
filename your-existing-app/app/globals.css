@@ -15,3 +15,16 @@
 .site-header .wordmark span{font-family:"Cormorant Garamond","Baskerville",Georgia,serif;font-size:30px;font-style:italic;font-weight:500;letter-spacing:.025em;transform:none}
 .site-header .wordmark b{font-size:6px;letter-spacing:.17em;margin-top:6px}
 @media(max-width:700px){.brand-lockup{gap:8px}.brand-logo{width:39px;height:39px}.site-header .wordmark span{font-size:26px}.site-header .wordmark b{font-size:5px;letter-spacing:.12em}.site-header .wordmark:before{display:none}}
+/* Centered masthead inspired by the printed Journalmus covers. */
+.site-header{height:142px;padding-top:0;position:sticky}
+.brand-lockup{position:absolute;left:50%;top:9px;transform:translateX(-50%);flex-direction:column;gap:0;z-index:1}
+.brand-lockup:before,.brand-lockup:after{content:"";position:absolute;top:34px;width:min(24vw,360px);height:1px;background:#858276}
+.brand-lockup:before{right:calc(100% + 16px)}
+.brand-lockup:after{left:calc(100% + 16px)}
+.brand-logo{width:65px;height:65px}
+.site-header .wordmark{align-items:center;line-height:.82}
+.site-header .wordmark span{font-family:"Snell Roundhand","Apple Chancery","URW Chancery L",cursive;font-size:48px;font-style:italic;font-weight:500;letter-spacing:-.045em;transform:scaleX(1.12)}
+.site-header .wordmark b{font-size:7px;letter-spacing:.19em;margin-top:6px}
+.nav-links{align-self:flex-end;margin-bottom:17px}
+@media(max-width:900px){.brand-lockup:before,.brand-lockup:after{width:17vw}.nav-links{gap:15px}.nav-links a{font-size:13px}}
+@media(max-width:700px){.site-header{height:117px;padding:0 5vw}.brand-lockup{top:5px;gap:0}.brand-logo{width:49px;height:49px}.brand-lockup:before,.brand-lockup:after{top:25px;width:14vw}.brand-lockup:before{right:calc(100% + 9px)}.brand-lockup:after{left:calc(100% + 9px)}.site-header .wordmark span{font-size:35px}.site-header .wordmark b{font-size:5px;letter-spacing:.12em;margin-top:4px}.mobile-menu{position:absolute;right:5vw;bottom:9px}.nav-links{top:117px}.nav-links.open{top:117px}}
