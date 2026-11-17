@@ -4,7 +4,9 @@ import {fileURLToPath} from 'node:url'
 
 const root = path.dirname(fileURLToPath(import.meta.url))
 const appRoot = path.join(root, '..', 'your-existing-app')
-const seed = JSON.parse(await readFile(path.join(appRoot, 'content/back-to-school-no-1.json'), 'utf8'))
+const seeds = await Promise.all(['back-to-school-no-1.json', 'autumn-is-here-no-2.json'].map(async (filename) =>
+  JSON.parse(await readFile(path.join(appRoot, 'content', filename), 'utf8')),
+))
 
 async function loadEnvFile() {
   try {
@@ -103,7 +105,7 @@ for (const [slug, title] of categories) {
   await publish('category', entry.uid)
 }
 
-const authorNames = [...new Set(seed.articles.map((article) => article.author))]
+const authorNames = [...new Set(seeds.flatMap((seed) => seed.articles.map((article) => article.author)))]
 const authorRefs = new Map()
 for (const name of authorNames) {
   const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-')
@@ -112,15 +114,18 @@ for (const name of authorNames) {
   await publish('author', entry.uid)
 }
 
-const assetNames = new Set(['back-to-school-01-cover.png', ...seed.articles.map((article) => article.image.split('/').pop()).filter(Boolean)])
+const assetNames = new Set(seeds.flatMap((seed) => [
+  path.basename(seed.edition.coverImage),
+  ...seed.articles.map((article) => article.image ? path.basename(article.image) : null).filter(Boolean),
+]))
 const assets = new Map()
 for (const filename of assetNames) {
   const title = filename.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ')
   assets.set(filename, await uploadAsset(filename, title, title))
 }
 
-const articleEntries = []
-for (const article of seed.articles) {
+const articlesBySlug = new Map()
+for (const seed of seeds) for (const article of seed.articles) {
   const fields = {
     title: article.title,
     slug: article.slug,
@@ -134,30 +139,35 @@ for (const article of seed.articles) {
     reading_time: Number.parseInt(article.readingTime, 10),
     excerpt: article.excerpt,
   }
-  articleEntries.push(await upsertEntry('article', fields))
+  articlesBySlug.set(article.slug, {entry: await upsertEntry('article', fields), article, seed})
 }
 
-const articleRefs = new Map(articleEntries.map((entry) => [entry.slug, {_content_type_uid: 'article', uid: entry.uid}]))
-const editionAsset = assets.get('back-to-school-01-cover.png')
-const editionFields = {
-  title: seed.edition.title,
-  slug: seed.edition.slug,
-  edition_number: seed.edition.editionNumber,
-  month: seed.edition.month,
-  year: seed.edition.year,
-  publication_date: seed.edition.publicationDate,
-  cover_image: {uid: editionAsset.uid},
-  subtitle: seed.edition.subtitle,
-  introduction: seed.edition.introduction,
-  stories: seed.edition.storySlugs.map((slug) => articleRefs.get(slug)),
-  featured_story: articleRefs.get(seed.edition.featuredStorySlug),
-  theme_accent: seed.edition.themeAccent,
-  status: 'draft',
+const editionsToPublish = []
+for (const seed of seeds) {
+  const articleRefs = new Map(seed.edition.storySlugs.map((slug) => [slug, {_content_type_uid: 'article', uid: articlesBySlug.get(slug)?.entry.uid}]))
+  const coverAsset = assets.get(path.basename(seed.edition.coverImage))
+  const editionFields = {
+    title: seed.edition.title,
+    slug: seed.edition.slug,
+    edition_number: seed.edition.editionNumber,
+    month: seed.edition.month,
+    year: seed.edition.year,
+    publication_date: seed.edition.publicationDate,
+    cover_image: {uid: coverAsset.uid},
+    subtitle: seed.edition.subtitle,
+    introduction: seed.edition.introduction,
+    stories: seed.edition.storySlugs.map((slug) => articleRefs.get(slug)),
+    featured_story: articleRefs.get(seed.edition.featuredStorySlug),
+    theme_accent: seed.edition.themeAccent,
+    status: 'draft',
+  }
+  const editionEntry = await upsertEntry('edition', editionFields)
+  editionsToPublish.push({seed, editionEntry, editionFields})
 }
-const editionEntry = await upsertEntry('edition', editionFields)
 
-for (const articleEntry of articleEntries) {
-  const article = seed.articles.find((item) => item.slug === articleEntry.slug)
+for (const {seed, editionEntry, editionFields} of editionsToPublish) {
+  for (const slug of seed.edition.storySlugs) {
+    const {entry: articleEntry, article} = articlesBySlug.get(slug)
   const fields = {
     title: article.title,
     slug: article.slug,
@@ -174,10 +184,10 @@ for (const articleEntry of articleEntries) {
   }
   const updated = await request(`/content_types/article/entries/${articleEntry.uid}?locale=${locale}`, {method: 'PUT', body: JSON.stringify({entry: fields})})
   await publish('article', updated.entry?.uid || articleEntry.uid)
+  }
+  const publishableEdition = await request(`/content_types/edition/entries/${editionEntry.uid}?locale=${locale}`, {
+    method: 'PUT', body: JSON.stringify({entry: {...editionFields, status: 'published'}}),
+  })
+  await publish('edition', publishableEdition.entry?.uid || editionEntry.uid)
+  console.log(`Imported ${seed.edition.title} (No. ${seed.edition.editionNumber}) with ${seed.articles.length} articles into ${environment}/${locale}.`)
 }
-
-const publishableEdition = await request(`/content_types/edition/entries/${editionEntry.uid}?locale=${locale}`, {
-  method: 'PUT', body: JSON.stringify({entry: {...editionFields, status: 'published'}}),
-})
-await publish('edition', publishableEdition.entry?.uid || editionEntry.uid)
-console.log(`Imported ${seed.edition.title} (No. ${seed.edition.editionNumber}) with ${articleEntries.length} articles into ${environment}/${locale}.`)

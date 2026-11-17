@@ -28,16 +28,16 @@ The Next.js app reads editions and articles from Contentstack's published Conten
 
 Article and Edition images remain normal editorial elements. The website has no separate photography, gallery, photo essay, postcard, or ambient-audio pages.
 
-## First edition seed
+## Edition seeds
 
-The September issue shown in the supplied Journalmus pages is prepared as **No. 1 — Back to School** with five stories: About Parismus, Events of the Month, Martin Luther King Park, The Nightingale, and Fontaines D.C.’s “Marianne.” The cover and article illustrations are in `seeds/assets/`; the editable content manifest is `your-existing-app/content/back-to-school-no-1.json`.
+The supplied Journalmus pages are prepared as two editable issues: **No. 1 — Back to School** with five stories and **No. 2 — Autumn Is Here** with six stories. Their covers and article illustrations are in `seeds/assets/`; the manifests are `your-existing-app/content/back-to-school-no-1.json` and `your-existing-app/content/autumn-is-here-no-2.json`.
 
-The cover does not show a year. The seed currently uses September 2024 as a provisional year based on the “Romance in 2024” reference in the song article; correct the `year` and publication dates in the manifest if the issue was published in a different September. The importer reads that manifest, uploads its images, creates or updates matching Category, Author, Article, and Edition entries by slug, then publishes the complete edition.
+The No. 1 cover does not show a year. Its seed currently uses September 2024 provisionally based on the “Romance in 2024” reference in the song article; correct the `year` and publication dates if it was published in a different September. No. 2 is dated October 2026 based on the issue content. The importer reads both manifests, uploads their images, creates or updates matching Category, Author, Article, and Edition entries by slug, then publishes each complete edition.
 
-To import it into the hosted stack:
+To import both issues into the hosted stack:
 
 1. Add `CONTENTSTACK_API_KEY`, `CONTENTSTACK_MANAGEMENT_TOKEN`, the regional `CONTENTSTACK_CMA_HOST`, and the Delivery API settings to `your-existing-app/.env.local`.
 2. Import the content types in the order described above. In the Article model, the Edition reference is optional so the importer can create Articles, create the Edition, then attach the back-reference.
-3. From `your-existing-app`, run `npm run import:first-edition`.
+3. From `your-existing-app`, run `npm run import:editions`.
 
 Without Contentstack credentials, the same manifest and local images power the local development site (`npm run dev`). That preview is development-only; production requires published Contentstack entries. Set `JOURNAL_USE_LOCAL_SEED=false` to disable the local preview.

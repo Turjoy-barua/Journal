@@ -1,5 +1,6 @@
 import type {Story} from './content'
 import firstEditionSeed from '../content/back-to-school-no-1.json'
+import secondEditionSeed from '../content/autumn-is-here-no-2.json'
 
 type ContentstackAsset = {
   url?: string
@@ -47,20 +48,23 @@ function localSeedEnabled() {
   return process.env.NODE_ENV !== 'production' && process.env.JOURNAL_USE_LOCAL_SEED !== 'false'
 }
 
+const localEditionSeeds = [firstEditionSeed, secondEditionSeed]
+
 function localSeedArticles(): JournalArticle[] {
-  return firstEditionSeed.articles.map((article) => ({
-    ...article,
-    date: dateLabel(article.publicationDate),
-    body: [],
-    richTextContent: article.richTextContent,
-  }))
+  return localEditionSeeds.flatMap((seed) => seed.articles.map((article) => ({
+      ...article,
+      date: dateLabel(article.publicationDate),
+      body: [],
+      richTextContent: article.richTextContent,
+    })))
 }
 
 function localSeedEditions(): JournalEdition[] {
   const articles = localSeedArticles()
-  const edition = firstEditionSeed.edition
-  const stories = edition.storySlugs.map((slug) => articles.find((article) => article.slug === slug)).filter((article): article is JournalArticle => Boolean(article))
-  return [{...edition, introduction: edition.introduction, stories, featuredStory: stories.find((story) => story.slug === edition.featuredStorySlug) || null}]
+  return localEditionSeeds.map(({edition}) => {
+    const stories = edition.storySlugs.map((slug) => articles.find((article) => article.slug === slug)).filter((article): article is JournalArticle => Boolean(article))
+    return {...edition, introduction: edition.introduction, stories, featuredStory: stories.find((story) => story.slug === edition.featuredStorySlug) || null}
+  }).sort((a, b) => (Date.parse(b.publicationDate) || 0) - (Date.parse(a.publicationDate) || 0))
 }
 
 function slugify(value: string) {
