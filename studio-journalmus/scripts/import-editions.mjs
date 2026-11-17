@@ -30,6 +30,7 @@ if (!token) {
 
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'g57lcjmj'
 const dataset = process.env.SANITY_STUDIO_DATASET || process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
+const apiVersion = process.env.SANITY_API_VERSION || '2026-11-16'
 const seeds = await Promise.all(seedFiles.map(async (filename) => JSON.parse(await readFile(path.join(appRoot, 'content', filename), 'utf8'))))
 const assetRoot = path.join(appRoot, 'public', 'editions')
 
@@ -64,9 +65,8 @@ async function upsertDocument(type, slug, fields) {
     await sanityMutation([{patch: {id: existing._id, set: fields}}])
     return existing._id
   }
-  const result = await sanityMutation([{create: {_type: type, ...fields}}])
-  const id = result.results?.[0]?.id || result.results?.[0]?.documentId
-  if (!id) throw new Error(`Sanity did not return a document ID for ${type}:${slug}`)
+  const id = `${type}-${slug}`
+  await sanityMutation([{create: {_id: id, _type: type, ...fields}}])
   return id
 }
 
