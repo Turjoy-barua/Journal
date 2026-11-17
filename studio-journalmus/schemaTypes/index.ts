@@ -5,5 +5,6 @@ import author from './author'
 import bookRecommendation from './bookRecommendation'
 import songRecommendation from './songRecommendation'
 import event from './event'
+import aboutPage from './aboutPage'
 
-export const schemaTypes = [edition, article, author, category, event, bookRecommendation, songRecommendation]
+export const schemaTypes = [aboutPage, edition, article, author, category, event, bookRecommendation, songRecommendation]

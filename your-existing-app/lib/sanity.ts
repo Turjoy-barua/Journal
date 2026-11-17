@@ -30,6 +30,31 @@ export type JournalEdition = {
   themeAccent?: string
 }
 
+export type AboutPageContent = {
+  heroEyebrow?: string
+  heroTitle?: string
+  heroTitleEmphasis?: string
+  heroDescription?: string
+  heroImage?: {url?: string; alt?: string}
+  heroCaption?: string
+  missionEyebrow?: string
+  missionTitle?: string
+  missionBody?: unknown
+  teamEyebrow?: string
+  teamTitle?: string
+  teamBody?: unknown
+  teamImage?: {url?: string; alt?: string}
+  callToActionLabel?: string
+  callToActionUrl?: string
+  categoriesEyebrow?: string
+  categoriesTitle?: string
+  fontStyle?: 'bodoniModa' | 'editorialSerif' | 'sansSerif'
+  heroTextAlignment?: 'left' | 'center' | 'right' | 'justify'
+  missionTextAlignment?: 'left' | 'center' | 'right' | 'justify'
+  teamTextAlignment?: 'left' | 'center' | 'right' | 'justify'
+  categoriesTextAlignment?: 'left' | 'center' | 'right' | 'justify'
+}
+
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'g57lcjmj'
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 const apiVersion = '2025-02-19'
@@ -59,6 +84,18 @@ async function sanityQuery<T>(query: string, params: Record<string, string | num
     console.error('[Sanity delivery]', error instanceof Error ? error.message : error)
     return null
   }
+}
+
+export async function getAboutPage(): Promise<AboutPageContent | null> {
+  return sanityQuery<AboutPageContent>(`*[_id == "aboutPage" && _type == "aboutPage"][0]{
+    heroEyebrow, heroTitle, heroTitleEmphasis, heroDescription,
+    "heroImage": heroImage{alt, "url": asset->url}, heroCaption,
+    missionEyebrow, missionTitle, "missionBody": missionBody[]{..., "asset": asset->{url}},
+    teamEyebrow, teamTitle, "teamBody": teamBody[]{..., "asset": asset->{url}},
+    "teamImage": teamImage{alt, "url": asset->url}, callToActionLabel, callToActionUrl,
+    categoriesEyebrow, categoriesTitle, fontStyle,
+    heroTextAlignment, missionTextAlignment, teamTextAlignment, categoriesTextAlignment
+  }`)
 }
 
 function normalizeArticle(entry: SanityArticleDocument, editionUid?: string): JournalArticle {

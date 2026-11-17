@@ -1,3 +1,74 @@
-import Link from 'next/link';import Image from 'next/image';import {photos} from '@/lib/content';import {ArrowUpRight} from 'lucide-react';
-export const metadata={title:'À propos',description:'Découvrez Parismus Journal, le journal étudiant de Parismus.'};
-export default function About(){return <div className="about-page"><div className="page-intro"><span className="eyebrow">À propos · Un journal étudiant</span><h1>Des histoires qui <i>nous rapprochent.</i></h1><p>Parismus Journal est un espace éditorial étudiant pour les histoires, les gens et les cultures qui font Paris.</p></div><div className="about-hero"><Image src={photos.cafe} alt="Un espace accueillant pour se retrouver" fill sizes="60vw"/><span>Un journal fait de rencontres</span></div><section className="about-columns"><div><span className="eyebrow">Notre intention</span><h2>Regarder la ville <i>ensemble.</i></h2></div><div><p>Nous racontons les lieux qui nous accueillent, les livres qui restent en tête, les musiques qui accompagnent le retour et les expériences qui changent notre regard.</p><p>Le journal prolonge l’esprit de Parismus : un point de rencontre pour des étudiants de parcours et de cultures différents. Il s’écrit au fil des contributions, avec curiosité et attention.</p></div></section><section className="about-team"><div><span className="eyebrow">Une rédaction ouverte</span><h2>Il y a une place <i>pour votre regard.</i></h2><p>Écriture, images et idées de sujets : le journal prend forme avec ses contributeurs. Proposez une histoire ou découvrez les rubriques.</p><Link className="button button-dark" href="mailto:bonjour@parismus.fr">Proposer une contribution <ArrowUpRight size={16}/></Link><small>Adresse de contact provisoire, à remplacer par celle de l’association.</small></div><Image src={photos.portrait} alt="Portrait d'une étudiante" width={500} height={650}/></section><div className="departments"><span className="eyebrow">Les rubriques du journal</span><h2>Huit façons <i>de raconter.</i></h2><div>{['About Parismus','Hidden Spots','Book of the Month','Song of the Month','Student Voices','Culture Without Borders','Life in Paris','Parismus Events'].map((x,i)=><Link href="/categories" key={x}><span>0{i+1}</span>{x}<ArrowUpRight size={16}/></Link>)}</div></div></div>}
+import Link from 'next/link'
+import Image from 'next/image'
+import {ArrowUpRight} from 'lucide-react'
+import {photos} from '@/lib/content'
+import PortableTextContent from '@/components/PortableTextContent'
+import {getAboutPage, getPublishedArticleCategories} from '@/lib/sanity'
+import type {CSSProperties} from 'react'
+
+export const metadata = {title: 'À propos', description: 'Découvrez Parismus Journal, le journal étudiant de Parismus.'}
+
+function fallbackText(paragraphs: string[]) {
+  return {
+    type: 'doc',
+    children: paragraphs.map((text) => ({type: 'p', children: [{text}]})),
+  }
+}
+
+export default async function About() {
+  const [page, categories] = await Promise.all([getAboutPage(), getPublishedArticleCategories()])
+  const heroTitle = page?.heroTitle || 'Des histoires qui'
+  const heroTitleEmphasis = page?.heroTitleEmphasis || 'nous rapprochent.'
+  const missionBody = page?.missionBody || fallbackText([
+    'Nous racontons les lieux qui nous accueillent, les livres qui restent en tête, les musiques qui accompagnent le retour et les expériences qui changent notre regard.',
+    'Le journal prolonge l’esprit de Parismus : un point de rencontre pour des étudiants de parcours et de cultures différents. Il s’écrit au fil des contributions, avec curiosité et attention.',
+  ])
+  const teamBody = page?.teamBody || fallbackText([
+    'Écriture, images et idées de sujets : le journal prend forme avec ses contributeurs. Proposez une histoire ou découvrez les rubriques.',
+  ])
+  const fonts = {
+    bodoniModa: '"Bodoni Moda", Didot, "Bodoni 72", serif',
+    editorialSerif: '"Cormorant Garamond", Baskerville, Georgia, serif',
+    sansSerif: '"DM Sans", Arial, sans-serif',
+  } as const
+  const pageStyle = {'--about-font-family': fonts[page?.fontStyle || 'bodoniModa']} as CSSProperties
+
+  return <div className="about-page" style={pageStyle}>
+    <div className="page-intro" style={{textAlign: page?.heroTextAlignment || 'left'}}>
+      <span className="eyebrow">{page?.heroEyebrow || 'À propos · Un journal étudiant'}</span>
+      <h1>{heroTitle} <i>{heroTitleEmphasis}</i></h1>
+      <p>{page?.heroDescription || 'Parismus Journal est un espace éditorial étudiant pour les histoires, les gens et les cultures qui font Paris.'}</p>
+    </div>
+
+    <div className="about-hero">
+      <Image src={page?.heroImage?.url || photos.cafe} alt={page?.heroImage?.alt || 'Un espace accueillant pour se retrouver'} fill sizes="(max-width: 700px) 92vw, 80vw"/>
+      <span>{page?.heroCaption || 'Un journal fait de rencontres'}</span>
+    </div>
+
+    <section className="about-columns" style={{textAlign: page?.missionTextAlignment || 'left'}}>
+      <div>
+        <span className="eyebrow">{page?.missionEyebrow || 'Notre intention'}</span>
+        <h2>{page?.missionTitle || 'Regarder la ville ensemble.'}</h2>
+      </div>
+      <div className="about-rich-body"><PortableTextContent value={missionBody}/></div>
+    </section>
+
+    <section className="about-team">
+      <div className="about-team-copy" style={{textAlign: page?.teamTextAlignment || 'left'}}>
+        <span className="eyebrow">{page?.teamEyebrow || 'Une rédaction ouverte'}</span>
+        <h2>{page?.teamTitle || 'Il y a une place pour votre regard.'}</h2>
+        <div className="about-rich-body"><PortableTextContent value={teamBody}/></div>
+        <Link className="button button-dark" href={page?.callToActionUrl || 'mailto:bonjour@parismus.fr'}>{page?.callToActionLabel || 'Proposer une contribution'} <ArrowUpRight size={16}/></Link>
+      </div>
+      <Image src={page?.teamImage?.url || photos.portrait} alt={page?.teamImage?.alt || "Portrait d'une étudiante"} width={500} height={650}/>
+    </section>
+
+    <div className="departments" style={{textAlign: page?.categoriesTextAlignment || 'left'}}>
+      <span className="eyebrow">{page?.categoriesEyebrow || 'Les rubriques du journal'}</span>
+      <h2>{page?.categoriesTitle || 'Huit façons de raconter.'}</h2>
+      <div>{categories.map((category, index) => <Link href={`/categories/${category.slug}`} key={category.slug}>
+        <span>{String(index + 1).padStart(2, '0')}</span>{category.name}<ArrowUpRight size={16}/>
+      </Link>)}</div>
+    </div>
+  </div>
+}

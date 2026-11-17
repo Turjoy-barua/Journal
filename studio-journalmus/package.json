@@ -6,6 +6,7 @@
     "dev": "CHOKIDAR_USEPOLLING=1 sanity dev --host 127.0.0.1",
     "build": "sanity build",
     "deploy": "sanity deploy",
+    "seed:about": "node scripts/seed-about-page.mjs",
     "typegen": "sanity schemas extract --enforce-required-fields --path schema.json && sanity typegen generate"
   },
   "dependencies": {

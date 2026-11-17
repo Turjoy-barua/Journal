@@ -153,9 +153,11 @@ export type Edition = {
     _type: "block";
     _key: string;
   }>;
-  stories: Array<{
-    _key: string;
-  } & ArticleReference>;
+  stories: Array<
+    {
+      _key: string;
+    } & ArticleReference
+  >;
   featuredStory: ArticleReference;
   themeAccent?: string;
   status: "draft" | "published" | "archived";
@@ -202,41 +204,46 @@ export type Article = {
     alt?: string;
     _type: "image";
   };
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h2" | "h3" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    caption?: string;
-    credit?: string;
-    _type: "image";
-    _key: string;
-  }>;
+  body?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal" | "h2" | "h3" | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        caption?: string;
+        credit?: string;
+        _type: "image";
+        _key: string;
+      }
+  >;
   edition?: EditionReference;
   publishedAt: string;
   featured?: boolean;
   readingTime?: number;
-  related?: Array<{
-    _key: string;
-  } & ArticleReference>;
+  related?: Array<
+    {
+      _key: string;
+    } & ArticleReference
+  >;
   seoTitle?: string;
   seoDescription?: string;
 };
@@ -282,6 +289,84 @@ export type Category = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+};
+
+export type AboutPage = {
+  _id: string;
+  _type: "aboutPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  heroEyebrow?: string;
+  heroTitle: string;
+  heroTitleEmphasis?: string;
+  heroDescription: string;
+  heroImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  heroCaption?: string;
+  missionEyebrow?: string;
+  missionTitle: string;
+  missionBody: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h2" | "h3" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  teamEyebrow?: string;
+  teamTitle: string;
+  teamBody: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h2" | "h3" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  teamImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  callToActionLabel?: string;
+  callToActionUrl?: string;
+  categoriesEyebrow?: string;
+  categoriesTitle?: string;
+  fontStyle?: "bodoniModa" | "editorialSerif" | "sansSerif";
+  heroTextAlignment?: "left" | "center" | "right" | "justify";
+  missionTextAlignment?: "left" | "center" | "right" | "justify";
+  teamTextAlignment?: "left" | "center" | "right" | "justify";
+  categoriesTextAlignment?: "left" | "center" | "right" | "justify";
 };
 
 export type SanityImagePaletteSwatch = {
@@ -381,5 +466,28 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = SanityImageAssetReference | ArticleReference | SongRecommendation | SanityImageCrop | SanityImageHotspot | BookRecommendation | Slug | Event | Edition | CategoryReference | AuthorReference | EditionReference | Article | Author | Category | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
-
+export type AllSanitySchemaTypes =
+  | SanityImageAssetReference
+  | ArticleReference
+  | SongRecommendation
+  | SanityImageCrop
+  | SanityImageHotspot
+  | BookRecommendation
+  | Slug
+  | Event
+  | Edition
+  | CategoryReference
+  | AuthorReference
+  | EditionReference
+  | Article
+  | Author
+  | Category
+  | AboutPage
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityImageMetadata
+  | SanityFileAsset
+  | SanityAssetSourceData
+  | SanityImageAsset
+  | Geopoint;
