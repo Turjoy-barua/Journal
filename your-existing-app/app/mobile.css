@@ -464,7 +464,7 @@
   }
 
   .site-header .wordmark span {
-    font-family: "Snell Roundhand", "Apple Chancery", "URW Chancery L", cursive;
+    font-family: "Bodoni Moda", Didot, "Bodoni 72", serif;
     font-size: clamp(30px, 9vw, 38px);
     font-style: italic;
     font-weight: 500;

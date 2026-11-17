@@ -45,6 +45,6 @@
 .site-header .wordmark:before,.site-header .wordmark:after{content:none!important;display:none!important}
 .site-header:before{content:none!important;display:none!important}
 .brand-lockup{top:20px}
-.site-header .wordmark span{font-family:"Snell Roundhand","Apple Chancery","URW Chancery L",cursive;font-size:clamp(42px,4.2vw,60px);font-style:italic;font-weight:500;letter-spacing:-.055em;transform:scaleX(1.08);white-space:nowrap}
+.site-header .wordmark span{font-family:"Bodoni Moda",Didot,"Bodoni 72",serif;font-size:clamp(42px,4.2vw,60px);font-style:italic;font-weight:500;letter-spacing:-.055em;transform:scaleX(1.08);white-space:nowrap}
 .nav-links{border-top:0}
 @media(max-width:700px){.site-header{height:156px;min-height:156px;border-bottom:1px solid var(--line);box-shadow:none}.brand-lockup{top:10px}.site-header .wordmark span{font-size:clamp(30px,9vw,38px)}.site-header:before{content:none!important;display:none!important}.nav-links{border-top:0}}
