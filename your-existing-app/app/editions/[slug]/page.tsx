@@ -37,7 +37,7 @@ export default async function EditionPage({params}:{params:Promise<{slug:string}
       {edition.coverImage ? <Image src={edition.coverImage} alt={edition.coverAlt} fill priority sizes="(max-width:700px) 100vw, 90vw"/> : <div className="edition-cover-placeholder"/>}
       <figcaption>Nº {String(edition.editionNumber).padStart(2, '0')} <span>—</span> {formatEditionDate(edition)}</figcaption>
     </figure>
-    {edition.introduction && <section className="edition-page-intro"><span className="eyebrow">Le mot de l’équipe</span><ContentstackRichText value={edition.introduction}/></section>}
+    {Boolean(edition.introduction) && <section className="edition-page-intro"><span className="eyebrow">Le mot de l’équipe</span><ContentstackRichText value={edition.introduction}/></section>}
     {stories.length > 0 && <section className="edition-toc" aria-labelledby="edition-toc-title">
       <div className="section-heading"><div><span className="eyebrow">Sommaire · {stories.length} histoires</span><h2 id="edition-toc-title">Dans <i>ce numéro.</i></h2></div></div>
       <ol>{stories.map((story, index) => <li key={story.uid}>

@@ -27,3 +27,17 @@ The Next.js app reads editions and articles from Contentstack's published Conten
 - `/categories` and `/categories/[slug]` — editorial category indexes
 
 Article and Edition images remain normal editorial elements. The website has no separate photography, gallery, photo essay, postcard, or ambient-audio pages.
+
+## First edition seed
+
+The September issue shown in the supplied Journalmus pages is prepared as **No. 1 — Back to School** with five stories: About Parismus, Events of the Month, Martin Luther King Park, The Nightingale, and Fontaines D.C.’s “Marianne.” The cover and article illustrations are in `seeds/assets/`; the editable content manifest is `your-existing-app/content/back-to-school-no-1.json`.
+
+The cover does not show a year. The seed currently uses September 2024 as a provisional year based on the “Romance in 2024” reference in the song article; correct the `year` and publication dates in the manifest if the issue was published in a different September. The importer reads that manifest, uploads its images, creates or updates matching Category, Author, Article, and Edition entries by slug, then publishes the complete edition.
+
+To import it into the hosted stack:
+
+1. Add `CONTENTSTACK_API_KEY`, `CONTENTSTACK_MANAGEMENT_TOKEN`, the regional `CONTENTSTACK_CMA_HOST`, and the Delivery API settings to `your-existing-app/.env.local`.
+2. Import the content types in the order described above. In the Article model, the Edition reference is optional so the importer can create Articles, create the Edition, then attach the back-reference.
+3. From `your-existing-app`, run `npm run import:first-edition`.
+
+Without Contentstack credentials, the same manifest and local images power the local development site (`npm run dev`). That preview is development-only; production requires published Contentstack entries. Set `JOURNAL_USE_LOCAL_SEED=false` to disable the local preview.

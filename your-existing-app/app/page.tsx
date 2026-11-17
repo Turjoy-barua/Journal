@@ -45,7 +45,7 @@ export default async function Home() {
       </Link>
     </section>
 
-    {edition.introduction && <section className="edition-introduction">
+    {Boolean(edition.introduction) && <section className="edition-introduction">
       <span className="eyebrow">Le mot de l’équipe · {formatEditionDate(edition)}</span>
       <h2>Bienvenue <i>dans cette édition.</i></h2>
       <ContentstackRichText value={edition.introduction}/>

@@ -1,4 +1,5 @@
 import type {Story} from './content'
+import firstEditionSeed from '../content/back-to-school-no-1.json'
 
 type ContentstackAsset = {
   url?: string
@@ -41,6 +42,26 @@ const environment = process.env.CONTENTSTACK_ENVIRONMENT || 'production'
 const locale = process.env.CONTENTSTACK_LOCALE || 'fr-fr'
 const apiHost = (process.env.CONTENTSTACK_API_HOST || 'cdn.contentstack.io').replace(/^https?:\/\//, '')
 const configured = Boolean(apiKey && deliveryToken)
+
+function localSeedEnabled() {
+  return process.env.NODE_ENV !== 'production' && process.env.JOURNAL_USE_LOCAL_SEED !== 'false'
+}
+
+function localSeedArticles(): JournalArticle[] {
+  return firstEditionSeed.articles.map((article) => ({
+    ...article,
+    date: dateLabel(article.publicationDate),
+    body: [],
+    richTextContent: article.richTextContent,
+  }))
+}
+
+function localSeedEditions(): JournalEdition[] {
+  const articles = localSeedArticles()
+  const edition = firstEditionSeed.edition
+  const stories = edition.storySlugs.map((slug) => articles.find((article) => article.slug === slug)).filter((article): article is JournalArticle => Boolean(article))
+  return [{...edition, introduction: edition.introduction, stories, featuredStory: stories.find((story) => story.slug === edition.featuredStorySlug) || null}]
+}
 
 function slugify(value: string) {
   return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
@@ -182,7 +203,7 @@ function logDeliveryError(error: unknown) {
 }
 
 export async function getPublishedEditions(): Promise<JournalEdition[]> {
-  if (!configured) return []
+  if (!configured) return localSeedEnabled() ? localSeedEditions() : []
   try {
     const [response, articleResponse] = await Promise.all([
       fetchEntries('edition', ['stories', 'featured_story']),
@@ -212,7 +233,7 @@ export async function getPublishedEditionBySlug(slug: string): Promise<JournalEd
 }
 
 export async function getPublishedArticles(): Promise<JournalArticle[]> {
-  if (!configured) return []
+  if (!configured) return localSeedEnabled() ? localSeedArticles() : []
   try {
     const [response, editions] = await Promise.all([
       fetchEntries('article', ['edition', 'category', 'author']),

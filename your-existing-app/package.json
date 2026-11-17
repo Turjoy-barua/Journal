@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev --hostname 127.0.0.1",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "import:first-edition": "node ../contentstack/seed-back-to-school.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",

@@ -124,7 +124,7 @@
       "field_metadata": {
         "ref_multiple": false
       },
-      "mandatory": true,
+      "mandatory": false,
       "multiple": false,
       "unique": false
     },
