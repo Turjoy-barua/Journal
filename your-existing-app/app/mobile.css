@@ -6,8 +6,8 @@
   }
 
   .site-header {
-    height: 74px;
-    padding: 10px 5vw 0;
+    height: 156px;
+    padding: 0 5vw;
   }
 
   .site-header .wordmark:before {
@@ -37,15 +37,15 @@
   }
 
   .nav-links {
-    top: 74px;
-    max-height: calc(100dvh - 74px);
+    top: 156px;
+    max-height: calc(100dvh - 156px);
     overflow-y: auto;
     padding: 10px 6vw calc(18px + env(safe-area-inset-bottom));
     box-shadow: 0 14px 22px rgba(16, 16, 68, .08);
   }
 
   .nav-links.open {
-    top: 74px;
+    top: 156px;
   }
 
   .nav-links a {
@@ -62,7 +62,7 @@
   }
 
   .search-panel {
-    top: 74px;
+    top: 156px;
     padding: 8px 5vw;
   }
 
@@ -439,6 +439,65 @@
 
   .article-top .eyebrow {
     font-size: 8px;
+  }
+}
+
+@media (max-width: 700px) {
+  .site-header {
+    height: 156px;
+    min-height: 156px;
+  }
+
+  .site-header:before {
+    top: 10px;
+    font-size: 10px;
+  }
+
+  .brand-lockup {
+    top: 10px;
+    max-width: calc(100vw - 84px);
+  }
+
+  .brand-logo {
+    width: 132px;
+    height: 74px;
+  }
+
+  .site-header .wordmark span {
+    font-family: "Snell Roundhand", "Apple Chancery", "URW Chancery L", cursive;
+    font-size: clamp(30px, 9vw, 38px);
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: -.055em;
+    transform: scaleX(1.08);
+    white-space: nowrap;
+  }
+
+  .site-header .wordmark b {
+    font-size: clamp(5px, 1.65vw, 7px);
+    letter-spacing: .07em;
+    white-space: nowrap;
+  }
+
+  .mobile-menu {
+    bottom: 3px;
+    right: 4vw;
+  }
+
+  .nav-links,
+  .nav-links.open,
+  .search-panel {
+    top: 156px;
+  }
+
+  .edition-cover-link {
+    aspect-ratio: 5 / 7;
+    background: var(--paper);
+  }
+
+  .edition-cover-link img {
+    object-fit: contain !important;
+    object-position: center;
   }
 }
 
