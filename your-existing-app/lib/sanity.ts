@@ -11,7 +11,13 @@ export type JournalArticle = Story & {
   featured: boolean
   editionUid?: string
   richTextContent: unknown
+  fontStyle?: EditorialFontStyle
+  titleAlignment?: EditorialTextAlignment
+  bodyAlignment?: EditorialTextAlignment
 }
+
+export type EditorialFontStyle = 'bodoniModa' | 'editorialSerif' | 'sansSerif'
+export type EditorialTextAlignment = 'left' | 'center' | 'right' | 'justify'
 
 export type JournalEdition = {
   uid: string
@@ -28,6 +34,9 @@ export type JournalEdition = {
   stories: JournalArticle[]
   featuredStory: JournalArticle | null
   themeAccent?: string
+  fontStyle?: EditorialFontStyle
+  titleAlignment?: EditorialTextAlignment
+  introductionAlignment?: EditorialTextAlignment
 }
 
 export type AboutPageContent = {
@@ -48,6 +57,7 @@ export type AboutPageContent = {
   callToActionUrl?: string
   categoriesEyebrow?: string
   categoriesTitle?: string
+  displayCategories?: Array<{slug: string; name: string; description?: string}> | null
   fontStyle?: 'bodoniModa' | 'editorialSerif' | 'sansSerif'
   heroTextAlignment?: 'left' | 'center' | 'right' | 'justify'
   missionTextAlignment?: 'left' | 'center' | 'right' | 'justify'
@@ -66,6 +76,14 @@ function dateLabel(value?: string) {
   if (!value) return ''
   const date = new Date(value)
   return Number.isNaN(date.getTime()) ? value : new Intl.DateTimeFormat(locale, {dateStyle: 'long'}).format(date)
+}
+
+function normalizeFontStyle(value: unknown): EditorialFontStyle {
+  return value === 'bodoniModa' || value === 'sansSerif' ? value : 'editorialSerif'
+}
+
+function normalizeAlignment(value: unknown, fallback: EditorialTextAlignment): EditorialTextAlignment {
+  return value === 'left' || value === 'center' || value === 'right' || value === 'justify' ? value : fallback
 }
 
 async function sanityQuery<T>(query: string, params: Record<string, string | number> = {}): Promise<T | null> {
@@ -93,7 +111,9 @@ export async function getAboutPage(): Promise<AboutPageContent | null> {
     missionEyebrow, missionTitle, "missionBody": missionBody[]{..., "asset": asset->{url}},
     teamEyebrow, teamTitle, "teamBody": teamBody[]{..., "asset": asset->{url}},
     "teamImage": teamImage{alt, "url": asset->url}, callToActionLabel, callToActionUrl,
-    categoriesEyebrow, categoriesTitle, fontStyle,
+    categoriesEyebrow, categoriesTitle,
+    "displayCategories": displayCategories[]->{"slug": slug.current, "name": title, description},
+    fontStyle,
     heroTextAlignment, missionTextAlignment, teamTextAlignment, categoriesTextAlignment
   }`)
 }
@@ -123,6 +143,9 @@ function normalizeArticle(entry: SanityArticleDocument, editionUid?: string): Jo
     featured: Boolean(entry.featured),
     editionUid,
     richTextContent,
+    fontStyle: normalizeFontStyle(entry.fontStyle),
+    titleAlignment: normalizeAlignment(entry.titleAlignment, 'center'),
+    bodyAlignment: normalizeAlignment(entry.bodyAlignment, 'left'),
   }
 }
 
@@ -145,6 +168,9 @@ function normalizeEdition(entry: SanityEditionDocument): JournalEdition {
     stories,
     featuredStory: featured,
     themeAccent: typeof entry.themeAccent === 'string' ? entry.themeAccent : undefined,
+    fontStyle: normalizeFontStyle(entry.fontStyle),
+    titleAlignment: normalizeAlignment(entry.titleAlignment, 'center'),
+    introductionAlignment: normalizeAlignment(entry.introductionAlignment, 'left'),
   }
 }
 
@@ -167,6 +193,7 @@ function seedEditions(): JournalEdition[] {
 
 const ARTICLE_FIELDS = `
   _id, title, "slug": slug.current, subtitle, excerpt, "publishedAt": publishedAt,
+  fontStyle, titleAlignment, bodyAlignment,
   "readingTime": readingTime, featured,
   "category": category->{title, "slug": slug.current},
   "author": author->{name},
@@ -176,6 +203,7 @@ const ARTICLE_FIELDS = `
 
 const EDITIONS_QUERY = `*[_type == "edition" && defined(slug.current)] | order(publicationDate desc) {
   _id, title, "slug": slug.current, editionNumber, month, year, publicationDate, subtitle, themeAccent, status,
+  fontStyle, titleAlignment, introductionAlignment,
   "coverImage": coverImage{alt, "url": asset->url}, introduction,
   "stories": stories[]->{${ARTICLE_FIELDS}},
   "featuredStory": featuredStory->{${ARTICLE_FIELDS}}

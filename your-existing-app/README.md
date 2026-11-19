@@ -17,7 +17,7 @@ The site uses Sanity project `g57lcjmj`, dataset `production` by default. Overri
 
 Open `http://localhost:3333` and select **Édition mensuelle** to create an issue. Create or select Category and Author documents, then create and publish 5–10 Articles. Create the Edition with its title, month, year, cover, introduction, ordered Article references, and featured story. Set its status to **Publié** and publish it. The optional Article → Edition reference can be added after the Edition exists. Draft and archived editions remain off the public site.
 
-The schemas include Edition, Article, Author, Category, Event, Book Recommendation, and Song Recommendation. Images are supported as normal article/edition media. There are no postcard, photo gallery, podcast, or ambient-audio content types.
+The active schemas include Edition, Article, Author, and Category. Event, book, and song coverage is managed as regular articles in their editorial categories. Images are supported as normal article/edition media. There are no postcard, photo gallery, podcast, or ambient-audio content types.
 
 ## Import the supplied issues
 

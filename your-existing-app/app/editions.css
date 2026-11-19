@@ -56,6 +56,9 @@
 .edition-page-intro .article-body { padding:18px 0 0; }
 .edition-page .section-heading h2 i { color:var(--edition-accent); }
 .edition-page .story-meta a { color:var(--edition-accent); }
+.edition-page-header h1,.edition-page-header .article-subtitle,.edition-page-intro .article-body { font-family:var(--editorial-font-family,var(--serif)); }
+.edition-page-header h1,.edition-page-header .article-subtitle { text-align:var(--editorial-title-alignment,center); }
+.edition-page-intro .article-body { text-align:var(--editorial-body-alignment,left); }
 .edition-page-bottom { margin:60px 11vw 0; padding-top:20px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:20px; }
 .story-image-empty { background:linear-gradient(145deg,#e9e0d4,#f7f3ec); }
 

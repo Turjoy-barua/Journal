@@ -47,6 +47,11 @@ export default defineType({
     defineField({name: 'categoriesEyebrow', title: 'Petit titre', type: 'string', group: 'categories', initialValue: 'Les rubriques du journal'}),
     defineField({name: 'categoriesTitle', title: 'Titre', type: 'string', group: 'categories', initialValue: 'Huit façons de raconter.'}),
     defineField({
+      name: 'displayCategories', title: 'Rubriques affichées', type: 'array', group: 'categories',
+      of: [{type: 'reference', to: [{type: 'category'}]}],
+      description: 'Choisissez les rubriques visibles sur la page À propos et faites-les glisser pour changer leur ordre. Les noms et les liens se modifient dans chaque document Rubrique.',
+    }),
+    defineField({
       name: 'fontStyle', title: 'Police de la page', type: 'string', group: 'design', initialValue: 'bodoniModa',
       options: {list: [
         {title: 'Bodoni Moda · élégant', value: 'bodoniModa'},

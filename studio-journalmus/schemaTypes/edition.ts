@@ -7,6 +7,7 @@ export default defineType({
   groups: [
     {name: 'identity', title: 'Identité', default: true},
     {name: 'editorial', title: 'Éditorial'},
+    {name: 'design', title: 'Style du texte'},
     {name: 'publication', title: 'Publication'},
   ],
   fields: [
@@ -23,6 +24,17 @@ export default defineType({
       of: [{type: 'block', styles: [{title: 'Normal', value: 'normal'}, {title: 'Citation', value: 'blockquote'}], marks: {decorators: [{title: 'Gras', value: 'strong'}, {title: 'Italique', value: 'em'}], annotations: [{name: 'link', type: 'object', title: 'Lien', fields: [{name: 'href', type: 'url', title: 'URL'}]}]}}],
       validation: (rule) => rule.required(),
     }),
+    defineField({name: 'fontStyle', title: 'Police du texte', type: 'string', group: 'design', initialValue: 'editorialSerif', options: {list: [
+      {title: 'Bodoni Moda · élégant', value: 'bodoniModa'},
+      {title: 'Sérif éditorial · classique', value: 'editorialSerif'},
+      {title: 'Sans sérif · moderne', value: 'sansSerif'},
+    ]}, description: 'S’applique au titre, au sous-titre et au mot de l’équipe sur la page de cette édition.'}),
+    defineField({name: 'titleAlignment', title: 'Alignement du titre', type: 'string', group: 'design', initialValue: 'center', options: {list: [
+      {title: 'À gauche', value: 'left'}, {title: 'Centré', value: 'center'}, {title: 'À droite', value: 'right'},
+    ]}}),
+    defineField({name: 'introductionAlignment', title: 'Alignement du mot de l’équipe', type: 'string', group: 'design', initialValue: 'left', options: {list: [
+      {title: 'À gauche', value: 'left'}, {title: 'Centré', value: 'center'}, {title: 'À droite', value: 'right'}, {title: 'Justifié', value: 'justify'},
+    ]}}),
     defineField({
       name: 'stories', title: 'Sommaire · Articles', type: 'array', group: 'editorial',
       of: [{type: 'reference', to: [{type: 'article'}]}],

@@ -6,6 +6,7 @@ export default defineType({
   type: 'document',
   groups: [
     {name: 'content', title: 'Contenu', default: true},
+    {name: 'design', title: 'Style du texte'},
     {name: 'publication', title: 'Publication'},
     {name: 'seo', title: 'SEO'},
   ],
@@ -24,6 +25,17 @@ export default defineType({
         {type: 'image', options: {hotspot: true}, fields: [{name: 'alt', type: 'string', title: 'Texte alternatif'}, {name: 'caption', type: 'string', title: 'Légende'}, {name: 'credit', type: 'string', title: 'Crédit'}]},
       ],
     }),
+    defineField({name: 'fontStyle', title: 'Police de l’article', type: 'string', group: 'design', initialValue: 'editorialSerif', options: {list: [
+      {title: 'Bodoni Moda · élégant', value: 'bodoniModa'},
+      {title: 'Sérif éditorial · classique', value: 'editorialSerif'},
+      {title: 'Sans sérif · moderne', value: 'sansSerif'},
+    ]}, description: 'S’applique au titre, au sous-titre et au texte de l’article.'}),
+    defineField({name: 'titleAlignment', title: 'Alignement du titre', type: 'string', group: 'design', initialValue: 'center', options: {list: [
+      {title: 'À gauche', value: 'left'}, {title: 'Centré', value: 'center'}, {title: 'À droite', value: 'right'},
+    ]}}),
+    defineField({name: 'bodyAlignment', title: 'Alignement du texte', type: 'string', group: 'design', initialValue: 'left', options: {list: [
+      {title: 'À gauche', value: 'left'}, {title: 'Centré', value: 'center'}, {title: 'À droite', value: 'right'}, {title: 'Justifié', value: 'justify'},
+    ]}}),
     defineField({name: 'edition', title: 'Édition', type: 'reference', to: [{type: 'edition'}], group: 'publication'}),
     defineField({name: 'publishedAt', title: 'Date de publication', type: 'datetime', group: 'publication', validation: (rule) => rule.required()}),
     defineField({name: 'featured', title: 'Article à la une', type: 'boolean', initialValue: false, group: 'publication'}),

@@ -2,6 +2,7 @@ import {notFound} from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import {ArrowLeft, ArrowUpRight} from 'lucide-react'
+import type {CSSProperties} from 'react'
 import StoryCard from '@/components/StoryCard'
 import PortableTextContent from '@/components/PortableTextContent'
 import ShareButton from '@/components/ShareButton'
@@ -20,8 +21,14 @@ export default async function Article({params}:{params:Promise<{slug:string}>}) 
   const [story, allStories] = await Promise.all([getPublishedArticleBySlug(slug), getPublishedArticles()])
   if (!story) notFound()
   const related = allStories.filter((item) => item.slug !== story.slug && item.categorySlug === story.categorySlug).slice(0, 2)
+  const fonts = {bodoniModa: '"Bodoni Moda", Didot, "Bodoni 72", serif', editorialSerif: 'var(--serif)', sansSerif: 'var(--sans)'}
+  const style = {
+    '--editorial-font-family': fonts[story.fontStyle || 'editorialSerif'],
+    '--editorial-title-alignment': story.titleAlignment || 'center',
+    '--editorial-body-alignment': story.bodyAlignment || 'left',
+  } as CSSProperties
 
-  return <article className="article-page">
+  return <article className="article-page" style={style}>
     <div className="article-top"><Link href={`/categories/${story.categorySlug}`} className="back-link"><ArrowLeft size={15}/> {story.category}</Link><span className="eyebrow">{story.readingTime} de lecture</span></div>
     <header className="article-header"><span className="eyebrow">{story.category} · {story.date}</span><h1>{story.title}</h1>{story.subtitle && <p className="article-subtitle">{story.subtitle}</p>}<div className="byline">Par {story.author}<span>·</span>{story.date}</div></header>
     {story.image && <figure className="article-cover"><Image src={story.image} alt={story.imageAlt} fill priority sizes="100vw"/><figcaption>{story.imageAlt}</figcaption></figure>}

@@ -29,91 +29,6 @@ export type ArticleReference = {
   [internalGroqTypeReferenceTo]?: "article";
 };
 
-export type SongRecommendation = {
-  _id: string;
-  _type: "songRecommendation";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title: string;
-  artist?: string;
-  artwork?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  review?: string;
-  embedUrl?: string;
-  month?: string;
-  article?: ArticleReference;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top: number;
-  bottom: number;
-  left: number;
-  right: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x: number;
-  y: number;
-  height: number;
-  width: number;
-};
-
-export type BookRecommendation = {
-  _id: string;
-  _type: "bookRecommendation";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title: string;
-  slug?: Slug;
-  author?: string;
-  cover?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  review?: string;
-  month?: string;
-  article?: ArticleReference;
-};
-
-export type Slug = {
-  _type: "slug";
-  current: string;
-  source?: string;
-};
-
-export type Event = {
-  _id: string;
-  _type: "event";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title: string;
-  slug?: Slug;
-  description?: string;
-  image?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  startsAt?: string;
-  location?: string;
-  recap?: ArticleReference;
-};
-
 export type Edition = {
   _id: string;
   _type: "edition";
@@ -153,11 +68,12 @@ export type Edition = {
     _type: "block";
     _key: string;
   }>;
-  stories: Array<
-    {
-      _key: string;
-    } & ArticleReference
-  >;
+  fontStyle?: "bodoniModa" | "editorialSerif" | "sansSerif";
+  titleAlignment?: "left" | "center" | "right";
+  introductionAlignment?: "left" | "center" | "right" | "justify";
+  stories: Array<{
+    _key: string;
+  } & ArticleReference>;
   featuredStory: ArticleReference;
   themeAccent?: string;
   status: "draft" | "published" | "archived";
@@ -204,48 +120,62 @@ export type Article = {
     alt?: string;
     _type: "image";
   };
-  body?: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: "span";
-          _key: string;
-        }>;
-        style?: "normal" | "h2" | "h3" | "blockquote";
-        listItem?: "bullet" | "number";
-        markDefs?: Array<{
-          href?: string;
-          _type: "link";
-          _key: string;
-        }>;
-        level?: number;
-        _type: "block";
-        _key: string;
-      }
-    | {
-        asset?: SanityImageAssetReference;
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt?: string;
-        caption?: string;
-        credit?: string;
-        _type: "image";
-        _key: string;
-      }
-  >;
+  body?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h2" | "h3" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    caption?: string;
+    credit?: string;
+    _type: "image";
+    _key: string;
+  }>;
+  fontStyle?: "bodoniModa" | "editorialSerif" | "sansSerif";
+  titleAlignment?: "left" | "center" | "right";
+  bodyAlignment?: "left" | "center" | "right" | "justify";
   edition?: EditionReference;
   publishedAt: string;
   featured?: boolean;
   readingTime?: number;
-  related?: Array<
-    {
-      _key: string;
-    } & ArticleReference
-  >;
+  related?: Array<{
+    _key: string;
+  } & ArticleReference>;
   seoTitle?: string;
   seoDescription?: string;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x: number;
+  y: number;
+  height: number;
+  width: number;
 };
 
 export type Author = {
@@ -270,6 +200,12 @@ export type Author = {
     url?: string;
     _key: string;
   }>;
+};
+
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
 };
 
 export type Category = {
@@ -362,6 +298,9 @@ export type AboutPage = {
   callToActionUrl?: string;
   categoriesEyebrow?: string;
   categoriesTitle?: string;
+  displayCategories?: Array<{
+    _key: string;
+  } & CategoryReference>;
   fontStyle?: "bodoniModa" | "editorialSerif" | "sansSerif";
   heroTextAlignment?: "left" | "center" | "right" | "justify";
   missionTextAlignment?: "left" | "center" | "right" | "justify";
@@ -466,28 +405,5 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes =
-  | SanityImageAssetReference
-  | ArticleReference
-  | SongRecommendation
-  | SanityImageCrop
-  | SanityImageHotspot
-  | BookRecommendation
-  | Slug
-  | Event
-  | Edition
-  | CategoryReference
-  | AuthorReference
-  | EditionReference
-  | Article
-  | Author
-  | Category
-  | AboutPage
-  | SanityImagePaletteSwatch
-  | SanityImagePalette
-  | SanityImageDimensions
-  | SanityImageMetadata
-  | SanityFileAsset
-  | SanityAssetSourceData
-  | SanityImageAsset
-  | Geopoint;
+export type AllSanitySchemaTypes = SanityImageAssetReference | ArticleReference | Edition | CategoryReference | AuthorReference | EditionReference | Article | SanityImageCrop | SanityImageHotspot | Author | Slug | Category | AboutPage | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+

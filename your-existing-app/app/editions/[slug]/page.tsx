@@ -24,7 +24,13 @@ export default async function EditionPage({params}:{params:Promise<{slug:string}
   const stories = [...edition.stories]
   if (featured && !stories.some((story) => story.uid === featured.uid)) stories.unshift(featured)
   const remaining = stories.filter((story) => story.uid !== featured?.uid)
-  const style = {'--edition-accent': edition.themeAccent || '#20205b'} as CSSProperties
+  const fonts = {bodoniModa: '"Bodoni Moda", Didot, "Bodoni 72", serif', editorialSerif: 'var(--serif)', sansSerif: 'var(--sans)'}
+  const style = {
+    '--edition-accent': edition.themeAccent || '#20205b',
+    '--editorial-font-family': fonts[edition.fontStyle || 'editorialSerif'],
+    '--editorial-title-alignment': edition.titleAlignment || 'center',
+    '--editorial-body-alignment': edition.introductionAlignment || 'left',
+  } as CSSProperties
 
   return <article className="edition-page" style={style}>
     <div className="article-top"><Link href="/editions" className="back-link"><ArrowLeft size={15}/> Toutes les éditions</Link><span className="eyebrow">Nº {String(edition.editionNumber).padStart(2, '0')} · {formatEditionDate(edition)}</span></div>

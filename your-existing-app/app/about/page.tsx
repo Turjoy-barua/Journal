@@ -17,6 +17,17 @@ function fallbackText(paragraphs: string[]) {
 
 export default async function About() {
   const [page, categories] = await Promise.all([getAboutPage(), getPublishedArticleCategories()])
+  const defaultCategoryOrder = [
+    'about-parismus', 'hidden-spots', 'book-of-the-month', 'song-of-the-month',
+    'student-voices', 'culture-without-borders', 'life-in-paris', 'parismus-events',
+  ]
+  const categoryOrder = new Map(defaultCategoryOrder.map((slug, index) => [slug, index]))
+  const defaultCategories = categories
+    .filter((category) => categoryOrder.has(category.slug))
+    .sort((a, b) => (categoryOrder.get(a.slug) ?? 99) - (categoryOrder.get(b.slug) ?? 99))
+  // Sanity returns an empty array when no references have been selected yet.
+  // Use the editorial defaults in that case instead of showing every legacy category.
+  const aboutCategories = page?.displayCategories?.length ? page.displayCategories : defaultCategories
   const heroTitle = page?.heroTitle || 'Des histoires qui'
   const heroTitleEmphasis = page?.heroTitleEmphasis || 'nous rapprochent.'
   const missionBody = page?.missionBody || fallbackText([
@@ -66,7 +77,7 @@ export default async function About() {
     <div className="departments" style={{textAlign: page?.categoriesTextAlignment || 'left'}}>
       <span className="eyebrow">{page?.categoriesEyebrow || 'Les rubriques du journal'}</span>
       <h2>{page?.categoriesTitle || 'Huit façons de raconter.'}</h2>
-      <div>{categories.map((category, index) => <Link href={`/categories/${category.slug}`} key={category.slug}>
+      <div>{aboutCategories.map((category, index) => <Link href={`/categories/${category.slug}`} key={category.slug}>
         <span>{String(index + 1).padStart(2, '0')}</span>{category.name}<ArrowUpRight size={16}/>
       </Link>)}</div>
     </div>
